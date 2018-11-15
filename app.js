@@ -3,6 +3,7 @@ var mysql = require('mysql')
 var bodyParser = require('body-parser')
 // var cookieParser = require('cookie-parser')
 var session = require('express-session')
+var md5 = require('md5');
 var app = express()
 var port = 2300
 var admin = require("firebase-admin");
@@ -22,9 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 //session
-//app.use(session({
-//    secret : 'usertest',
-//}));
+app.use(session({
+   secret : 'usertest',
+}));
 
 //view engine pug
 app.set('view engine','pug');
@@ -45,16 +46,16 @@ var conn = mysql.createConnection({
 app.use(express.static('public'))
 
 app.get('/testfirebase',(req,res)=>{
-    var datas = []
-    var i =0
+  var datas = []
+  var i =0
   db.collection('accounts').get()
     .then((data) => {
       data.forEach(json => {
 //        console.log(json.id, "=>" , json.data())
           datas[i] = json.data()
           i++
-          console.log(datas)
       })
+                console.log(datas.length)
       res.json({status : true, message : "berhasil get data account",data : datas})
     })
     .catch((err) => {
@@ -80,7 +81,7 @@ app.get('/home',function(req,res){
             if(err)
               throw err;
             else {
-              res.render('home',{list : result, list1 : result1, list2 : result2});
+              res.render('home',{list : result, list1 : result1, list2 : result2, username : username});
             }
           })
         }
@@ -101,6 +102,7 @@ app.get('/chart',function(req,res){
       }
     })
 })
+
 app.get('/income',function(req,res){
   var username = req.session.userName;
   var selsql = 'select * from account where username = ?';
@@ -120,6 +122,7 @@ app.get('/income',function(req,res){
       }
   })
 })
+
 app.get('/expense',function(req,res){
   var username = req.session.userName;
   var selsql = 'select * from account where username = ?';
@@ -139,6 +142,7 @@ app.get('/expense',function(req,res){
       }
   })
 })
+
 app.get('/account',function(req,res){
     var username = req.session.userName;
     selsql = 'select account_name, account_balance,category_name from account where username = ?';
@@ -157,6 +161,7 @@ app.get('/account',function(req,res){
         }
     })
 })
+
 app.get('/category',function(req,res){
     var username = req.session.userName;
     selsql = 'select * from category where username = ?'
@@ -168,28 +173,31 @@ app.get('/category',function(req,res){
         }
     })
 })
+
 app.post('/authen',function(req,res,next){
   var username = req.body.username;
-  var password = req.body.password;
-  var sql = 'select * from user where username = ? and password = ?';
-  conn.query(sql,[username,password],function(err,row){
-    if(err){
-      throw err
-    }
-    else{
-      var count = row.length;
-      console.log("row length is : ",count);
-      if(count > 0){
-        req.session.userName = username;
-        res.redirect('/home')
-      }
-      else{
-        res.redirect('/')
-      }
+  var password = md5(req.body.password);
 
-    }
-  })
+  var datas = []
+  var i =0
+  db.collection('accounts').get()
+    .then((data) => {
+      data.forEach(json => {
+//        console.log(json.id, "=>" , json.data())
+          datas[i] = json.data()
+          if ((json.data().email == username && json.data().password == password) || (json.data().username == username && json.data().password == password)) {
+              req.session.userName = json.data().username
+              res.redirect('/home');
+          }
+          i++
+      })
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
+
 })
+
 app.get('/report',function(req,res){
   var username = req.session.userName;
   var totalincome = 0;
@@ -218,6 +226,7 @@ app.get('/report',function(req,res){
       }
   })
 })
+
 app.post('/authenregis',function(req,res){
   var username = req.body.username;
   var password = req.body.password;
@@ -248,6 +257,7 @@ app.post('/authenregis',function(req,res){
     }
   })
 })
+
 app.post('/authaccount',function(req,res){
     var accs = req.body.nameacc;
     var currency = req.body.currency;
@@ -274,6 +284,7 @@ app.post('/authaccount',function(req,res){
         }
     })
 })
+
 app.post('/authcategory',function(req,res){
     var categoryname = req.body.namecate;
     var categorynum = req.body.catenums;
@@ -297,6 +308,7 @@ app.post('/authcategory',function(req,res){
         }
     })
 })
+
 app.post('/authincome',function(req,res){
   var amount = req.body.amount;
   var from = req.body.from;
@@ -334,6 +346,7 @@ app.post('/authincome',function(req,res){
       }
   })
 })
+
 app.post('/authexpense',function(req,res){
   var amount = req.body.amount;
   var to = req.body.to;
