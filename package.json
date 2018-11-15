@@ -1,0 +1,30 @@
+{
+  "name": "kaskecil",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "chart.js": "^2.7.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "firebase-admin": "^6.1.0",
+    "md5": "^2.2.1",
+    "mysql": "^2.15.0",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winargo/kaskecil.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winargo/kaskecil/issues"
+  },
+  "homepage": "https://github.com/winargo/kaskecil#readme"
+}

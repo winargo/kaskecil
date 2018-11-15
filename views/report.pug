@@ -1,0 +1,169 @@
+doctype html
+title Report
+meta(charset='UTF-8')
+meta(name='viewport' content='width=device-width, initial-scale=1')
+link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway')
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB' crossorigin='anonymous')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js' integrity='sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4' crossorigin='anonymous')
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js')
+style.
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+  a:hover{
+  text-decoration: none;
+  }
+// Top container
+.w3-bar.w3-top.w3-black.w3-large(style='z-index:4')
+  button.w3-bar-item.w3-button.w3-hide-large.w3-hover-none.w3-hover-text-light-grey(onclick='w3_open();')
+    i.fa.fa-bars
+    |  &nbsp;Menu
+  span.w3-bar-item.w3-right Logo
+// Sidebar/menu
+nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;width:300px;')
+  br
+  .w3-container.w3-row
+    .w3-col.s4
+      img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
+    .w3-col.s8.w3-bar
+      span
+        | Welcome,
+        strong Mike
+      br
+      a.w3-bar-item.w3-button(href='#')
+        i.fa.fa-envelope
+      a.w3-bar-item.w3-button(href='#')
+        i.fa.fa-user
+      a.w3-bar-item.w3-button(href='#')
+        i.fa.fa-cog
+  hr
+  .w3-container
+    h5 Dashboard
+  .w3-bar-block
+    a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
+      i.fa.fa-remove.fa-fw
+      | &nbsp; Close Menu
+    a.w3-bar-item.w3-button.w3-padding(href='/home')
+      i.fa.fa-users.fa-fw
+      | &nbsp; Overview
+    a.w3-bar-item.w3-button.w3-padding(href='/income')
+      i.fa.fa-users.fa-fw
+      | &nbsp; Income
+    a.w3-bar-item.w3-button.w3-padding(href='/expense')
+      i.fa.fa-bullseye.fa-fw
+      | &nbsp; Expenses
+    a.w3-bar-item.w3-button.w3-padding(href='/account')
+      i.fa.fa-diamond.fa-fw
+      | &nbsp; Accounts
+    a.w3-bar-item.w3-button.w3-padding(href='/category')
+      i.fa.fa-bell.fa-fw
+      | &nbsp; Category
+    a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
+      i.fa.fa-bank.fa-fw
+      | &nbsp; Report
+    a.w3-bar-item.w3-button.w3-padding(href='/chart.html')
+      i.fa.fa-history.fa-fw
+      | &nbsp; Charts
+    br
+    br
+// Overlay effect when opening sidebar on small screens
+#myOverlay.w3-overlay.w3-hide-large.w3-animate-opacity(onclick='w3_close()' style='cursor:pointer' title='close side menu')
+// !PAGE CONTENT!
+.w3-main(style='margin-left:300px;margin-top:43px;')
+  // Header
+  header.w3-container(style='padding-top:22px')
+    h5
+      b
+        i.fa.fa-dashboard
+        |  My Dashboard
+  .w3-panel
+
+    // table data
+    center
+      h2 Report Table
+    br
+    hr
+    -function prettyDate(dateString){
+        //if it's already a date object and not a string you don't need this line:
+        -var date = new Date(dateString);
+        -var d = date.getDate();
+        -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+        -var m = monthNames[date.getMonth()];
+        -var y = date.getFullYear();
+        -return d+' '+m+' '+y;}
+    .row
+      .table-responsive-md.col-md-6
+        table.table.table-hover.table-bordered
+          caption income
+          thead
+            tr
+              td No
+              td Income From
+              td Income Date
+              td Income Note
+              td Income Amount
+          tbody
+          each a in listincome
+            tr
+              td #{a.income_id}
+              td #{a.income_from}
+              td #{prettyDate(a.income_date)}
+              td #{a.income_notes}
+              td $ #{a.income_amount}
+          tfooter
+            tr
+              td(colspan='4' style='text-align:right;') Total
+              td $#{tincome}
+      // expense
+      .table-responsive-md.col-md-6
+        table.table.table-hover.table-bordered
+          caption Expense
+          thead
+            tr
+              td No
+              td Expense From
+              td Expense Note
+              td Expense Date
+              td Expense Amount
+          tbody
+          each b in listexpense
+            tr
+              td #{b.expense_id}
+              td #{b.expense_from}
+              td #{b.expense_notes}
+              td #{prettyDate(b.expense_date)}
+              td $ #{b.expense_amount}
+          tfooter
+              tr
+                td(colspan='4' style='text-align:right;') Total
+                td $#{texpense}
+  hr
+  // Footer
+  //
+    <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>FOOTER</h4>
+    </footer>
+  // End page content
+script.
+  // Get the Sidebar
+  var mySidebar = document.getElementById("mySidebar");
+  // Get the DIV with overlay effect
+  var overlayBg = document.getElementById("myOverlay");
+  // Toggle between showing and hiding the sidebar, and add overlay effect
+  function w3_open() {
+  if (mySidebar.style.display === 'block') {
+  mySidebar.style.display = 'none';
+  overlayBg.style.display = "none";
+  } else {
+  mySidebar.style.display = 'block';
+  overlayBg.style.display = "block";
+  }
+  }
+  // Close the sidebar with the close button
+  function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+  }
