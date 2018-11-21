@@ -100,17 +100,17 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
           caption income
           thead
             tr
-              td No
-              td Income From
               td Income Date
+              td Income Category
+              td Income Account
               td Income Note
               td Income Amount
           tbody
           each a in listincome
             tr
-              td #{a.income_id}
-              td #{a.income_from}
-              td #{prettyDate(a.income_date)}
+              td #{a.income_date}
+              td #{a.income_category}
+              td #{a.income_account}
               td #{a.income_notes}
               td $ #{a.income_amount}
           tfooter
@@ -123,18 +123,18 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
           caption Expense
           thead
             tr
-              td No
-              td Expense From
-              td Expense Note
               td Expense Date
+              td Expense Category
+              td Expense Account
+              td Expense Note
               td Expense Amount
           tbody
           each b in listexpense
             tr
-              td #{b.expense_id}
-              td #{b.expense_from}
+              td #{b.expense_date}
+              td #{b.expense_category}
               td #{b.expense_notes}
-              td #{prettyDate(b.expense_date)}
+              td #{b.expense_account}
               td $ #{b.expense_amount}
           tfooter
               tr

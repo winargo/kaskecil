@@ -25,6 +25,10 @@ app.use(bodyParser.json())
 //session
 app.use(session({
    secret : 'usertest',
+   resave: true,
+   saveUninitialized: false,
+   cookie: { maxAge: 18000000 }
+   // cookie: { secure: true }
 }));
 
 //view engine pug
@@ -105,42 +109,62 @@ app.get('/chart',function(req,res){
 
 app.get('/income',function(req,res){
   var username = req.session.userName;
-  var selsql = 'select * from account where username = ?';
-  conn.query(selsql,username,function(err,row){
-     if(err)
-        throw err
-      else{
-        var username = req.session.userName;
-        var selsql2 = 'select * from income where username = ? order by income_createdate DESC';
-        conn.query(selsql2,username,function(err,result){
-            if(err)
-                throw err
-            else{
-                res.render('income', {list : result, list1 : row });
+  var dataincome = []
+  var dataaccount = []
+
+  db.collection('income').get()
+    .then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].username == username) {
+          dataincome.push(data[i])
+        }
+      }
+    })
+    .catch((err)=>{
+      throw err
+    })
+    db.collection('account').get()
+      .then((data) => {
+        data.forEach(json => {
+            if (json.data().username == username) {
+              dataaccount.push(json.data())
             }
         })
-      }
-  })
+      })
+      .catch((err)=>{
+        throw err
+      })
+    res.render('income',{list : dataincome, list1 : dataaccount })
 })
 
 app.get('/expense',function(req,res){
   var username = req.session.userName;
-  var selsql = 'select * from account where username = ?';
-  conn.query(selsql,username,function(err,row){
-     if(err)
-        throw err
-      else{
-        var username = req.session.userName;
-        var selsql2 = 'select * from expense where username = ? order by expense_createdate DESC';
-        conn.query(selsql2,username,function(err,result){
-            if(err)
-                throw err
-            else{
-                res.render('expense', {list : result, list1 : row });
+  var dataexpense = []
+  var dataaccount = []
+
+  db.collection('expense').get()
+    .then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].username == username) {
+          dataexpense.push(data[i])
+        }
+      }
+    })
+    .catch((err)=>{
+      throw err
+    })
+    db.collection('account').get()
+      .then((data) => {
+        data.forEach(json => {
+            if (json.data().username == username) {
+              dataaccount.push(json.data())
             }
         })
-      }
-  })
+      })
+      .catch((err)=>{
+        throw err
+      })
+      res.render('expense', {list : dataexpense, list1 : dataaccount });
 })
 
 app.get('/account',function(req,res){
@@ -191,6 +215,7 @@ app.post('/authen',function(req,res,next){
           }
           i++
       })
+      res.redirect('/');
     })
     .catch((err) => {
       console.log('Error getting documents', err);
@@ -202,29 +227,36 @@ app.get('/report',function(req,res){
   var username = req.session.userName;
   var totalincome = 0;
   var totalexpense = 0;
-  selsql = 'select * from income where username = ?';
-  conn.query(selsql,username,function(err,result){
-      if(err)
-          throw err
-      else{
-          for (var i = 0; i < result.length; i++) {
-            totalincome+=result[i].income_amount;
+  var dataincome = []
+  var dataexpense = []
+  var i =0
+  var j =0
+  db.collection('income').get()
+    .then((data) => {
+      data.forEach(json => {
+          if (json.data().username == username) {
+            dataincome.push(json.data())
           }
-          console.log(totalincome);
-          sel2sql = 'select * from expense where username = ?';
-          conn.query(sel2sql,username,function(err,row){
-              if(err)
-                  throw err
-              else{
-                  for (var i = 0; i < row.length; i++) {
-                    totalexpense+=row[i].expense_amount;
-                  }
-                  console.log(totalexpense);
-                  res.render('report',{listincome : result, listexpense : row, tincome : totalincome, texpense : totalexpense});
+          i++
+      })
+      // res.render('report',{list : datas});
+      db.collection('expense').get()
+        .then((data) => {
+          data.forEach(json => {
+              if (json.data().username == username) {
+                dataexpense.push(json.data())
               }
+              j++
           })
-      }
-  })
+          res.render('report',{listincome : dataincome, listexpense : dataexpense});
+        })
+        .catch((err) => {
+          console.log('Error getting documents', err);
+        });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
 })
 
 app.post('/authenregis',function(req,res){
