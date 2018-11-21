@@ -51,20 +51,35 @@ app.use(express.static('public'))
 
 app.get('/testfirebase',(req,res)=>{
   var datas = []
+  var datas1 = []
   var i =0
-  db.collection('accounts').get()
+  db.collection('income').get()
     .then((data) => {
       data.forEach(json => {
 //        console.log(json.id, "=>" , json.data())
-          datas[i] = json.data()
-          i++
+            if (json.data().username == "winargo") {
+              datas.push(json.data())
+            }
+          // datas[i] = json.data()
+          // i++
       })
-                console.log(datas.length)
-      res.json({status : true, message : "berhasil get data account",data : datas})
+      db.collection('expense').get()
+      .then((data1)=>{
+        data1.forEach(json=>{
+          if (json.data().username == "winargo") {
+            datas1.push(json.data())
+          }
+        })
+        res.json({status : true, message : "berhasil get data account",data : datas, data1: datas1})
+      })
+      .catch((err)=>{
+        throw err
+      })
     })
     .catch((err) => {
       console.log('Error getting documents', err);
     });
+
 })
 
 
@@ -111,30 +126,30 @@ app.get('/income',function(req,res){
   var username = req.session.userName;
   var dataincome = []
   var dataaccount = []
-
   db.collection('income').get()
     .then((data) => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].username == username) {
-          dataincome.push(data[i])
-        }
-      }
-    })
-    .catch((err)=>{
-      throw err
-    })
-    db.collection('account').get()
+      data.forEach(json => {
+        console.log(json.data().username);
+          if (json.data().username == username) {
+            dataincome.push(json.data())
+          }
+      })
+      db.collection('account').get()
       .then((data) => {
         data.forEach(json => {
-            if (json.data().username == username) {
-              dataaccount.push(json.data())
-            }
+          if (json.data().username == username) {
+            dataaccount.push(json.data())
+          }
         })
+        res.render('income',{list : dataincome, list1 : dataaccount })
       })
       .catch((err)=>{
         throw err
       })
-    res.render('income',{list : dataincome, list1 : dataaccount })
+    })
+    .catch((err)=>{
+      throw err
+    })
 })
 
 app.get('/expense',function(req,res){
@@ -144,57 +159,70 @@ app.get('/expense',function(req,res){
 
   db.collection('expense').get()
     .then((data) => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].username == username) {
-          dataexpense.push(data[i])
+      data.forEach(json=>{
+        if (json.data().username == username) {
+          dataexpense.push(json.data())
         }
-      }
-    })
-    .catch((err)=>{
-      throw err
-    })
-    db.collection('account').get()
+      })
+      db.collection('account').get()
       .then((data) => {
         data.forEach(json => {
-            if (json.data().username == username) {
-              dataaccount.push(json.data())
-            }
+          if (json.data().username == username) {
+            dataaccount.push(json.data())
+          }
         })
+        res.render('expense', {list : dataexpense, list1 : dataaccount });
       })
       .catch((err)=>{
         throw err
-      })
-      res.render('expense', {list : dataexpense, list1 : dataaccount });
+      }) // end data1
+    })
+    .catch((err)=>{
+      throw err
+    })// end data
 })
 
 app.get('/account',function(req,res){
     var username = req.session.userName;
-    selsql = 'select account_name, account_balance,category_name from account where username = ?';
-    conn.query(selsql,username,function(err,result){
-        if(err)
-            throw err
-        else{
-            sel2sql = 'select category_name from category where username = ?';
-            conn.query(sel2sql,username,function(err,row){
-                if(err)
-                    throw err
-                else{
-                    res.render('account',{list : result, list1 : row});
-                }
-            })
+    var dataaccount = []
+    var datacategory = []
+    db.collection('account').get()
+    .then((data)=>{
+      data.forEach(json=>{
+        if (json.data().username == username) {
+          dataaccount.push(json.data())
         }
+      })
+      db.collection('category').get()
+      .then((data1)=>{
+        data1.forEach(json=>{
+          if (json.data().username == username) {
+            datacategory.push(json.data())
+          }
+        })
+        res.render('account',{list : dataaccount, list1 : datacategory});
+      })
+      .catch((err)=>{
+        throw err
+      }) // end data1
     })
+    .catch((err)=>{
+      throw err
+    }) // end data
 })
 
 app.get('/category',function(req,res){
     var username = req.session.userName;
-    selsql = 'select * from category where username = ?'
-    conn.query(selsql,username,function(err,row){
-        if(err)
-            throw err
-        else{
-            res.render('category',{list : row});
+    var datas = []
+    db.collection('category').get()
+    .then((data)=>{
+      data.forEach(json=>{
+        if(json.data().username == username)
+        {
+          datas.push(json.data())
         }
+      })
+      res.render('category',{list : datas});
     })
 })
 
@@ -229,15 +257,13 @@ app.get('/report',function(req,res){
   var totalexpense = 0;
   var dataincome = []
   var dataexpense = []
-  var i =0
-  var j =0
+
   db.collection('income').get()
     .then((data) => {
       data.forEach(json => {
           if (json.data().username == username) {
             dataincome.push(json.data())
           }
-          i++
       })
       // res.render('report',{list : datas});
       db.collection('expense').get()
@@ -246,7 +272,7 @@ app.get('/report',function(req,res){
               if (json.data().username == username) {
                 dataexpense.push(json.data())
               }
-              j++
+
           })
           res.render('report',{listincome : dataincome, listexpense : dataexpense});
         })
