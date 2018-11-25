@@ -263,6 +263,7 @@ app.get('/report',function(req,res){
       data.forEach(json => {
           if (json.data().username == username) {
             dataincome.push(json.data())
+            totalincome += json.data().income_amount
           }
       })
       // res.render('report',{list : datas});
@@ -271,10 +272,11 @@ app.get('/report',function(req,res){
           data.forEach(json => {
               if (json.data().username == username) {
                 dataexpense.push(json.data())
+                totalexpense += json.data().expense_amount
               }
 
           })
-          res.render('report',{listincome : dataincome, listexpense : dataexpense});
+          res.render('report',{listincome : dataincome, listexpense : dataexpense, totalIncome : totalincome, totalExpense : totalexpense});
         })
         .catch((err) => {
           console.log('Error getting documents', err);
