@@ -85,6 +85,9 @@ app.get('/testfirebase',(req,res)=>{
 
 app.get('/home',function(req,res){
   var username = req.session.userName;
+  var dataAccount = []
+  var dataIncome = []
+  var dataExpense = []
   var selsql = 'select * from account where username = ? limit 5';
   conn.query(selsql,username,function(err,result){
     if(err)
@@ -106,6 +109,14 @@ app.get('/home',function(req,res){
         }
       })
     }
+  })
+  db.collection('account').get()
+  .then((data)=>{
+    data.forEach(json=>{
+      if (json.data().username == username) {
+
+      }
+    })
   })
 })
 
