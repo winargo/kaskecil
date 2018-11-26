@@ -100,13 +100,13 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
         each a in list
           .col-md-4
             .card.text-white.bg-secondary.mb-3(style='max-width: 18rem;')
-              .card-header #{prettyDate(a.expense_createdate)}
+              .card-header #{a.expense_createdate}
               .card-body
                 h5.card-title #{a.expense_account}
                 p.card-text
                   | $ #{a.expense_amount}
                   br
-                  | $ #{a.amount_left}
+                  | $ #{a.expense_account}
   // Button trigger modal
   button#fixedpost.btn.btn-outline-dark(data-toggle='modal' data-target='#Expense') +&nbsp;
   // Modal
