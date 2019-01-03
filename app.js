@@ -49,6 +49,7 @@ var conn = mysql.createConnection({
 
 app.use(express.static('public'))
 
+<<<<<<< HEAD
 app.get('/test',(req,res)=>{
   var citiesRef = db.collection('account');
   var allCities = citiesRef.get()
@@ -62,6 +63,8 @@ app.get('/test',(req,res)=>{
     });
 })
 
+=======
+>>>>>>> e2358c882a2913411941e1d8251ab8ab010caf8a
 app.get('/testfirebase',(req,res)=>{
   var datas = []
   var datas1 = []
