@@ -1,5 +1,5 @@
 doctype html
-title Accounts
+title Transfer
 meta(charset='UTF-8')
 meta(name='viewport' content='width=device-width, initial-scale=1')
 link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
@@ -17,9 +17,11 @@ style.
   #fixedpost{
   position: fixed;
   float: right;
-  border-radius: 90%;
+  border-radius: 50%;
   margin-left: 70%;
-  font-size: 15px;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
   }
 // Top container
 .w3-bar.w3-top.w3-black.w3-large(style='z-index:4')
@@ -48,10 +50,10 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
   .w3-container
     h5 Dashboard
   .w3-bar-block
-    a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='home.html' onclick='w3_close()' title='close menu')
+    a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
       i.fa.fa-remove.fa-fw
       | &nbsp; Close Menu
-    a.w3-bar-item.w3-button.w3-padding(href='home')
+    a.w3-bar-item.w3-button.w3-padding(href='/home')
       i.fa.fa-users.fa-fw
       | &nbsp; Overview
     a.w3-bar-item.w3-button.w3-padding(href='/income')
@@ -60,10 +62,10 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
     a.w3-bar-item.w3-button.w3-padding(href='/expense')
       i.fa.fa-bullseye.fa-fw
       | &nbsp; Expenses
-    a.w3-bar-item.w3-button.w3-padding(href='/transfer')
+    a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
       i.fa.fa-exchange.fa-fw
       | &nbsp; Transfer
-    a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
+    a.w3-bar-item.w3-button.w3-padding(href='/account')
       i.fa.fa-diamond.fa-fw
       | &nbsp; Accounts
     a.w3-bar-item.w3-button.w3-padding(href='/category')
@@ -80,6 +82,14 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
 // Overlay effect when opening sidebar on small screens
 #myOverlay.w3-overlay.w3-hide-large.w3-animate-opacity(onclick='w3_close()' style='cursor:pointer' title='close side menu')
 // !PAGE CONTENT!
+-function prettyDate(dateString){
+    //if it's already a date object and not a string you don't need this line:
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return d+' '+m+' '+y;}
 .w3-main(style='margin-left:300px;margin-top:43px;')
   // Header
   header.w3-container(style='padding-top:22px')
@@ -90,47 +100,61 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
   .w3-panel
     .w3-row-padding(style='margin:0 -16px')
       .row
-          each r, index in list
-            .col-md-3
-              .card.border-secondary.mb-3(style='max-width: 18rem;')
-                .card-header #{r.account_name} #{r.category_name}
-                .card-body.text-secondary
-                  p.card-text $ #{r.account_balance}
+        each a in list
+          .col-md-4
+            .card.text-white.bg-secondary.mb-3(style='max-width: 18rem;')
+              .card-header #{a.transfer_createdate}
+              .card-body
+                h5.card-title #{a.transfer_account}
+                p.card-text
+                  | $ #{a.transfer_amount}
+                  br
+                  | $ #{a.transfer_src}
+                  br
+                  | $ #{a.transfer_dest}
   // Button trigger modal
-  button#fixedpost.btn.btn-outline-dark(data-toggle='modal' data-target='#Income') +&nbsp;
+  button#fixedpost.btn.btn-outline-dark(data-toggle='modal' data-target='#Transfer') +&nbsp;
   // Modal
-  #Income.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+  #Transfer.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
         .modal-header
-          h5#exampleModalLongTitle.modal-title Create New Account
+          h5#exampleModalLongTitle.modal-title Transfer
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') &times;
-        form(action='/authaccount' method='post')
+        form(action='/authtransfer' method='post')
           .modal-body
             .row
               .col-md-8
-                label(for='1') Name
-                input#first.form-control(type='text' name='nameacc')
-                label(for='2') Initial Ammount
-                input#second.form-control(type='number' name='currency')
-                .input-group.mb-3
-                  .input-group-prepend
-                    label.input-group-text(for='inputGroupSelect01') Category
-                  select#inputGroupSelect01.custom-select(name ='option')
-                    option(selected='') Choose...
-                    each resu in list1
-                        option(value=''+[resu.category_name]) #{resu.category_name}
-
+                .form-group
+                  label(for='first') From Account
+                  select.custom-select(name='src')
+                    option(value='0' selected='') select...
+                    each b in list1
+                        option(value=''+[b.account_name]) #{b.account_name}
+                  label(for='first') To Account
+                  select.custom-select(name='dest')
+                    option(value='0' selected='') select...
+                    each b in list1
+                        option(value=''+[b.account_name]) #{b.account_name}
+                .form-group
+                  label(for='second') Amount
+                  input#second.form-control(type='number' name='amount')
+                br
+                .form-group
+                  label(for='4') Transfer Date
+                  input#4.control-form(type='date' name='inptdate')
+                label(for='note1') Note
+                input#note1.form-control(type='text' name='note')
           .modal-footer
             button.btn.btn-secondary(type='button' data-dismiss='modal') Close
             button.btn.btn-primary(type='submit') Save
   hr
+  br
   // Footer
   //
     <footer class="w3-container w3-padding-16 w3-light-grey">
     <h4>FOOTER</h4>
-    <p>Powered by Danny</p>
     </footer>
   // End page content
 script.

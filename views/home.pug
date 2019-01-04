@@ -53,12 +53,15 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
     a.w3-bar-item.w3-button.w3-padding(href='/expense')
       i.fa.fa-bullseye.fa-fw
       | &nbsp; Expenses
+    a.w3-bar-item.w3-button.w3-padding(href='/transfer')
+      i.fa.fa-exchange.fa-fw
+      | &nbsp; Transfer
     a.w3-bar-item.w3-button.w3-padding(href='/account')
       i.fa.fa-diamond.fa-fw
       | &nbsp; Accounts
     a.w3-bar-item.w3-button.w3-padding(href='/category')
       i.fa.fa-bell.fa-fw
-      |   Category
+      | &nbsp; Category
     a.w3-bar-item.w3-button.w3-padding(href='/report')
       i.fa.fa-bank.fa-fw
       | &nbsp; Report
@@ -103,7 +106,7 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
           td #{a.account_name}
           td #{a.account_balance}
           td #{a.account_category}
-          td #{prettyDate(a.account_createdate)}
+          td #{(a.account_createdate)}
     table.table.table-bordered
       caption Income
       thead
@@ -115,13 +118,13 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
           td Income Amount
           td Income Date
       tbody
-      each b in list1
+      each b, index in list1
         tr
-          td #{b.income_id}
+          td #{index+1}
           td #{b.income_from}
           td #{b.income_notes}
-          td $ #{b.income_amount}
-          td #{prettyDate(b.income_date)}
+          td #{b.income_amount}
+          td #{(b.income_date)}
     table.table.table-bordered
       caption Expense
       thead
@@ -133,13 +136,13 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
           td Expense Amount
           td Expense Date
         tbody
-        each c in list2
+        each c, index in list2
           tr
-            td #{c.expense_id}
+            td #{index+1}
             td #{c.expense_to}
             td #{c.expense_notes}
-            td $ #{c.expense_amount}
-            td #{prettyDate(c.expense_date)}
+            td #{c.expense_amount}
+            td #{(c.expense_date)}
   hr
   br
   // Footer
