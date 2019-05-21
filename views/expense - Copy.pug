@@ -1,0 +1,650 @@
+doctype html
+title Expenses
+meta(charset='UTF-8')
+meta(name='viewport' content='width=device-width, initial-scale=1')
+link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway')
+link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous")
+
+//link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4' crossorigin='anonymous')
+<!-- Custom styles for this template -->
+link(href="css/simple-sidebar.css" rel="stylesheet")
+script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js' integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js' integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm' crossorigin='anonymous')
+script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js")
+script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+style.
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+  a:hover{
+  text-decoration: none;
+  }
+  #fixedpost{
+  position: fixed;
+  float: right;
+  border-radius: 50%;
+  margin-left: 70%;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  }
+// Top container
+.w3-bar.w3-top.w3-black.w3-large(style='z-index:4;opacity:0.8')
+  button.w3-bar-item.w3-button.w3-hide-large.w3-hover-none.w3-hover-text-light-grey(onclick='w3_open();')
+    i.fa.fa-bars
+    |  &nbsp;Menu
+  button.w3-right.w3-btn.btn-primary.w3-padding(onclick='w3_logout()') Logout
+  a.w3-bar-item.w3-text-white(href='#')
+    | PrimaCash
+// Sidebar/menu
+nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;width:300px;')
+  #wrapper.toggled(style="margin-top:43px;")
+    // Sidebar
+    #sidebar-wrapper
+      ul.sidebar-nav.w3-margin-top
+        .w3-container.w3-row
+          .w3-col.s4
+            img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
+          .w3-col.s8.w3-bar.w3-text-white
+            span
+              | Welcome,
+              strong #{username}
+            br
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-envelope
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-user
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-cog
+        
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/dashboard')
+            i.fa.fa-home.fa-fw.w3-left
+              | &nbsp; Dashboard
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/income')
+            i.fa.fa-arrow-circle-down.fa-fw.w3-left
+              | &nbsp; Income 
+        li
+          a.w3-bar-item.w3-button.w3-padding-16.w3-blue(href='#')
+            i.fa.fa-arrow-circle-up.fa-fw.w3-left
+              | &nbsp; Expense
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/transfer')
+            i.fa.fa-exchange-alt.fa-fw.w3-left
+              | &nbsp; Transfer
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/account')
+            i.fa.fa-users.fa-fw.w3-left
+              | &nbsp; Account
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/category')
+            i.fa.fa-list-ol.fa-fw.w3-left
+              | &nbsp; Category
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/report')
+            i.fa.fa-clipboard-list.fa-fw.w3-left
+              | &nbsp; Report
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='chart.html')
+            i.fa.fa-chart-bar.fa-fw.w3-left
+              | &nbsp; Chart
+  //- br
+  //- .w3-container.w3-row
+  //-   .w3-col.s4
+  //-     img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
+  //-   .w3-col.s8.w3-bar
+  //-     span
+  //-       | Welcome,
+  //-       strong #{username}
+  //-     br
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-envelope
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-user
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-cog
+  //- hr
+  //- .w3-container
+  //-   h5 Dashboard
+  //- .w3-bar-block
+  //-   a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
+  //-     i.fa.fa-remove.fa-fw
+  //-     | &nbsp; Close Menu
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/home')
+  //-     i.fa.fa-home.fa-fw
+  //-     | &nbsp; Overview
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/income')
+  //-     i.fa.fa-users.fa-fw
+  //-     | &nbsp; Income
+  //-   a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
+  //-     i.fa.fa-bullseye.fa-fw
+  //-     | &nbsp; Expenses
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/transfer')
+  //-     i.fa.fa-exchange.fa-fw
+  //-     | &nbsp; Transfer
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/account')
+  //-     i.fa.fa-diamond.fa-fw
+  //-     | &nbsp; Accounts
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/category')
+  //-     i.fa.fa-bell.fa-fw
+  //-     | &nbsp; Category
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/report')
+  //-     i.fa.fa-bank.fa-fw
+  //-     | &nbsp; Report
+  //-   a.w3-bar-item.w3-button.w3-padding(href='chart.html')
+  //-     i.fa.fa-history.fa-fw
+  //-     | &nbsp; Charts
+  //-   br
+  //-   br
+// Overlay effect when opening sidebar on small screens
+#myOverlay.w3-overlay.w3-hide-large.w3-animate-opacity(onclick='w3_close()' style='cursor:pointer' title='close side menu')
+// !PAGE CONTENT!
+-function prettyDate(dateString){
+    //if it's already a date object and not a string you don't need this line:
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return d+' '+m+' '+y;}
+.w3-main(style='margin-left:300px;margin-top:43px;')
+  // Header
+  header.w3-container(style='padding-top:22px')
+    h5
+      b
+        i.fa.fa-dashboard
+        |  My Expense
+    // Button trigger modal
+    button.btn.btn-outline-dark(data-toggle='modal' data-target='#Expense')
+      i.fa.fa-plus-circle.fw-fa
+      |  Add Expense
+    // Modal
+    #Expense.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLongTitle.modal-title Expense
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          form(action='/authexpense' method='post')
+            .modal-body
+              .row
+                .col-md-8
+                  label(for='to') To
+                  input#to.form-control(type='text' name='to')
+                  br
+                  .form-group
+                    label(for='first') Account
+                    select#nameacc.custom-select(name='options' onchange="selectacc()")
+                      option(value='0' selected='') Select
+                      each b in list1
+                          option(value=''+[b.account_name]) #{b.account_name}
+                .col-md-4
+                  .form-group
+                    label Account Currency
+                    input#cur.form-control(type='text' disabled)
+                .col-md-8
+                  label(for='3' style='margin-top:10px') Expense Category
+                    .select
+                      img#imagename(style='margin-right:10px;width:24px;height:24px;display:inline-block' src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/falses.png') 
+                        
+                      select#selectname.custom-select(style='width:268px;display:inline-block' onchange='categname()' name='category' title="Select your category")
+                          option(value='0' selected='') Select
+                          each resu in listcategory
+                              option(value=''+[resu.category_name]) #{resu.category_name}
+                  input#catnums.form-control(type='hidden' name='categnums')
+                  .form-group
+                    label(for='second') Amount
+                    input#second.form-control(type='number' name='amount')
+                
+                  .form-group
+                    label(for='4') Expense Date
+                    input#4.form-control(type='date' name='inptdate')
+                .col-md-6
+                  .form-group
+                    label(for='first') Expense Count
+                    input.form-control(type='text' name='count')
+                .col-md-6
+                  .form-group
+                    label(for='first') Expense Period
+                    select.custom-select(name='period')
+                      option(value='0' selected='') Select Expense Period
+                      option(value='Day' ) Day
+                      option(value='Week' ) Week
+                      option(value='Month' ) Month
+                      option(value='Year' ) Year
+                .col-md-8
+                  .form-group
+                      label(for='first') Expense Times
+                      input.form-control(type='text' name='times')
+                  label(for='note1') Note
+                  input#note1.form-control(type='text' name='note')
+            .modal-footer
+              button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+              button.btn.btn-primary(type='submit') Save
+  hr
+  .w3-panel
+    .w3-row-padding(style='margin:0 -16px')
+      .row
+        each a, index in list
+          .col-md-3
+            .card.text-white.bg-secondary.mb-3(style='max-width: 18rem;')
+              .card-header #{a.expense_date}
+              .card-body
+                h5.card-title #{a.expense_account}
+                // Delete Button
+                button.btn.btn-outline-light(style='float:right' data-toggle='modal' data-target='#Delete'+a.expense_id)
+                  i.fa.fa-trash.fa-fw
+                // Modal
+                div.modal.fade(id='Delete'+a.expense_id tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+                  .modal-dialog.modal-dialog-centered(role='document')
+                    .modal-content
+                      .modal-header
+                        h5#exampleModalLongTitle.modal-title(style="color:black") Delete Expense
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                          span(aria-hidden='true') &times;
+                      form(action='/deleteexpense' method='post')
+                        .modal-body
+                          .row
+                            .col-md-12
+                              //label(for='1') Name Category
+                              //input#first.form-control(type='text' name='namecate')
+                              p(style="color:black") Are you sure to delete your expense #{a.expense_account} ?
+                              //input#deletecatnums.form-control(type='hidden' name='deletecategnums' value=''+[r.category_image])
+                              input(type='hidden' name='expenseid' value=''+a.expense_id)
+                              input(type='hidden' name='beforedeleteaccname' value=''+a.expense_account)
+                        .modal-footer
+                          button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                          button.btn.btn-primary(type='submit') Delete
+
+                // Button trigger modal
+                button.btn.btn-outline-light(style='float:right;margin-right:10px' data-toggle='modal' data-target='#'+a.expense_id)
+                  i.fa.fa-edit.fa-fw
+                // Modal
+                div.modal.fade(id=a.expense_id tabindex='-1' role='dialog' style="color:black" aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+                  .modal-dialog.modal-dialog-centered(role='document')
+                    .modal-content
+                      .modal-header
+                        h5#exampleModalLongTitle.modal-title Expense
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                          span(aria-hidden='true') &times;
+                      form(action='/editexpense' method='post')
+                        .modal-body
+                          .row
+                            .col-md-8
+                              label(for='to') To
+                              input#to.form-control(type='text' name='to' value=a.expense_to)
+                              br
+                              .form-group
+                                label(for='first') Account
+                                select.custom-select(name='editoptions')
+                                  if(a.expense_account==null)
+                                    option(value='0' selected='') Select
+                                    each b in list1
+                                        option(value=''+b.account_name) #{b.account_name}
+                                  else
+                                    option(value=a.expense_account selected) #{a.expense_account}
+                                    option(value='0') Select
+                                    each b in list1
+                                      if(a.expense_account!=[b.account_name])
+                                        option(value=''+b.account_name) #{b.account_name}
+                            .col-md-4
+                              .form-group
+                                label Account Currency
+                                each y in list1
+                                  if(a.expense_account==[y.account_name])
+                                    input#cur.form-control(type='text' value=y.account_currency disabled)
+                            .col-md-8
+                              label(for='3' style='margin-top:10px') Expense Category
+                                .select
+                                  each y in listcategory
+                                    if(a.expense_category==[y.category_name])
+                                      if(y.category_image==31)
+                                        img(id='editimagename'+index style='margin-right:10px;width:36px;height:36px;display:inline-block' src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/add.png')
+                                      else
+                                        img(id='editimagename'+index style='margin-right:10px;width:36px;height:36px;display:inline-block' src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/'+a.expense_category+'.png')
+                    
+                                  select.custom-select(id='editselectname'+index style='width:256px;display:inline-block' onchange='editcategname('+index+')' name='editcategory' title="Select your category") 
+                                      
+                                    if(a.expense_category==null) 
+                                      option(value='0' selected='') Select
+                                      each resu in listcategory
+                                        option(value=''+resu.category_name) #{resu.category_name}
+                                    else
+                                      option(value=''+a.expense_category selected) #{a.expense_category}
+                                      each resu in listcategory
+                                        if(a.expense_category!=[resu.category_name])
+                                          option(value=resu.category_name) #{resu.category_name}
+
+                              input#expenseid.form-control(type='hidden' name='expenseid' value=a.expense_id)
+                              input#accs.form-control(type='hidden' name='accs' value=a.expense_account)
+                              input#balance.form-control(type='hidden' name='balance' value=a.expense_amount)
+                              .form-group
+                                label(for='second') Amount
+                                input#second.form-control(type='number' name='editamount' value=a.expense_amount)
+                              
+                              .form-group
+                                label(for='4') Expense Date
+                                each x in inputdate
+                                  if(a.expense_id==[x.expense_id])
+                                    input.form-control.expensedate(id="datepicker" type='text' name='editinptdate' value=x.expense_date) 
+                            .col-md-6
+                              .form-group
+                                label(for='first') Expense Count
+                                input.form-control(type='text' name='editcount' value=a.expense_repeat_count)
+                            .col-md-6
+                              .form-group
+                                label(for='first') Expense Period
+                        
+                                select.custom-select(name='editperiod')
+                                  -var period=['Day','Week','Month','Year'];
+                                  
+                                    if(a.expense_repeat_period==null)
+                                      option(value='0' selected='') Select Expense Period
+                                      option(value='Day' ) Day
+                                      option(value='Week' ) Week
+                                      option(value='Month' ) Month
+                                      option(value='Year' ) Year
+
+                                    else
+                                      option(value=a.expense_repeat_period selected) #{a.expense_repeat_period}
+                                      option(value='0' ) Select Expense Period
+                                      each x in period
+                                        if(a.expense_repeat_period!=[x])
+                                          option(value=[x]) #{x}
+                            .col-md-8
+                              .form-group
+                                  label(for='first') Expense Times
+                                  input.form-control(type='text' name='edittimes' value=a.expense_repeat_time)
+                              label(for='note1') Note
+                              input#note1.form-control(type='text' name='editnote' value=a.expense_notes)
+                        .modal-footer
+                          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                          button.btn.btn-primary(type='submit') Edit
+                
+                p.card-text
+                  each y in list1
+                    if(a.expense_account==[y.account_name])
+                      | #{y.account_fullcurrency.substring(4)} #{a.expense_amount}
+                  br
+                  | #{a.expense_category}
+  
+  br
+  // Footer
+  //
+    <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>FOOTER</h4>
+    </footer>
+  // End page content
+script(src="./js/axios.min.js")
+script(type='text/javascript' src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js')
+script.
+  // Get the Sidebar
+  var mySidebar = document.getElementById("mySidebar");
+  // Get the DIV with overlay effect
+  var overlayBg = document.getElementById("myOverlay");
+  // Toggle between showing and hiding the sidebar, and add overlay effect
+  function w3_open() {
+  if (mySidebar.style.display === 'block') {
+  mySidebar.style.display = 'none';
+  overlayBg.style.display = "none";
+  } else {
+  mySidebar.style.display = 'block';
+  overlayBg.style.display = "block";
+  }
+  }
+
+  $(function() {
+    $('.expensedate').daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true
+    }, function(start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
+  });
+  
+  function editcategname(index){
+    var num;
+    var tes = document.getElementById("editselectname"+index).value;
+    console.log(tes);
+    if(tes=='cashicon'){
+      num=1;
+    }
+    else if(tes=='bank'){
+      num=2;
+    }
+    else if(tes=='lend'){
+      num=3;
+    }
+    else if(tes=='cheque'){
+      num=4;
+    }
+    else if(tes=='creditcard'){
+      num=5;
+    }
+    else if(tes=='food'){
+      num=6;
+    }
+    else if(tes=='electric'){
+      num=7;
+    }
+    else if(tes=='truck'){
+      num=8;
+    }
+    else if(tes=='health'){
+      num=9;
+    }
+    else if(tes=='ball'){
+      num=10;
+    }
+    else if(tes=='house'){
+      num=11;
+    }
+    else if(tes=='water'){
+      num=12;
+    }
+    else if(tes=='clothes'){
+      num=13;
+    }
+    else if(tes=='movie'){
+      num=14;
+    }
+    else if(tes=='poker'){
+      num=15;
+    }
+    else if(tes=='car'){
+      num=16;
+    }
+    else if(tes=='accident'){
+      num=17;
+    }
+    else if(tes=='daily'){
+      num=18;
+    }
+    else if(tes=='tax'){
+      num=19;
+    }
+    else if(tes=='pet'){
+      num=20;
+    }
+    else if(tes=='computer'){
+      num=21;
+    }
+    else if(tes=='plane'){
+      num=22;
+    }
+    else if(tes=='gasoline'){
+      num=23;
+    }
+    else if(tes=='garden'){
+      num=24;
+    }
+    else if(tes=='bitcoin'){
+      num=25;
+    }
+    else if(tes=='insurance'){
+      num=26;
+    }
+    else if(tes=='investment'){
+      num=27;
+    }
+    else if(tes=='fixing'){
+      num=28;
+    }
+    else if(tes=='medical'){
+      num=29;
+    }
+    else if(tes=='drink'){
+      num=30;
+    }
+    else{
+      num=31;
+      tes='add';
+      
+    }
+    if(tes=='0'){
+      document.getElementById("editimagename"+index).src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/falses.png';
+    }
+    else{
+      console.log(tes)
+      document.getElementById("editimagename"+index).src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/'+tes+'.png';
+    }
+  }
+
+  var cur, nameacc;
+  function selectacc(){
+    cur=document.getElementById("cur")
+    nameacc=document.getElementById("nameacc").value;
+    axios.get('/listaccount')
+      .then(response=> {
+        for(var i=0;i<response.data.dataaccount.length;i++){
+          if(response.data.dataaccount[i]["account_name"]==nameacc){  
+            cur.value=response.data.dataaccount[i]["account_currency"];
+            console.log(cur.value)
+          }
+        }
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  function categname(){
+    var num;
+    var tes = document.getElementById("selectname").value;
+    if(tes=='cashicon'){
+      num=1;
+    }
+    else if(tes=='bank'){
+      num=2;
+    }
+    else if(tes=='lend'){
+      num=3;
+    }
+    else if(tes=='cheque'){
+      num=4;
+    }
+    else if(tes=='creditcard'){
+      num=5;
+    }
+    else if(tes=='food'){
+      num=6;
+    }
+    else if(tes=='electric'){
+      num=7;
+    }
+    else if(tes=='truck'){
+      num=8;
+    }
+    else if(tes=='health'){
+      num=9;
+    }
+    else if(tes=='ball'){
+      num=10;
+    }
+    else if(tes=='house'){
+      num=11;
+    }
+    else if(tes=='water'){
+      num=12;
+    }
+    else if(tes=='clothes'){
+      num=13;
+    }
+    else if(tes=='movie'){
+      num=14;
+    }
+    else if(tes=='poker'){
+      num=15;
+    }
+    else if(tes=='car'){
+      num=16;
+    }
+    else if(tes=='accident'){
+      num=17;
+    }
+    else if(tes=='daily'){
+      num=18;
+    }
+    else if(tes=='tax'){
+      num=19;
+    }
+    else if(tes=='pet'){
+      num=20;
+    }
+    else if(tes=='computer'){
+      num=21;
+    }
+    else if(tes=='plane'){
+      num=22;
+    }
+    else if(tes=='gasoline'){
+      num=23;
+    }
+    else if(tes=='garden'){
+      num=24;
+    }
+    else if(tes=='bitcoin'){
+      num=25;
+    }
+    else if(tes=='insurance'){
+      num=26;
+    }
+    else if(tes=='investment'){
+      num=27;
+    }
+    else if(tes=='fixing'){
+      num=28;
+    }
+    else if(tes=='medical'){
+      num=29;
+    }
+    else if(tes=='drink'){
+      num=30;
+    }
+    else if(tes=='0'){
+      num='';
+      tes='falses';
+    }
+    else{
+      num=31;
+      tes='add';
+    }
+    document.getElementById("catnums").value=num;
+    document.getElementById("imagename").src='https://raw.githubusercontent.com/winargo/midascash/master/app/src/main/res/drawable/'+tes+'.png';
+    
+  }
+  // Close the sidebar with the close button
+  function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+  }
+
+  function w3_logout(){
+  window.location.replace('/');
+  }

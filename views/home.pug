@@ -1,178 +1,1012 @@
 doctype html
-title Budget
-meta(charset='UTF-8')
-meta(name='viewport' content='width=device-width, initial-scale=1')
-link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
-link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway')
-link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css' integrity='sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy' crossorigin='anonymous')
-script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js' integrity='sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4' crossorigin='anonymous')
-script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
-style.
-  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-  a:hover{
-  text-decoration: none;
-  }
-// Top container
-.w3-bar.w3-top.w3-black.w3-large(style='z-index:4')
-  button.w3-bar-item.w3-button.w3-hide-large.w3-hover-none.w3-hover-text-light-grey(onclick='w3_open();')
-    i.fa.fa-bars
-    |  &nbsp;Menu
-  button.w3-right.btn.btn-primary(onclick='w3_logout()') Logout
-// Sidebar/menu
-nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;width:300px;')
-  br
-  .w3-container.w3-row
-    .w3-col.s4
-      img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
-    .w3-col.s8.w3-bar
-      span
-        | Welcome,
-        strong #{username}
-      br
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-envelope
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-user
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-cog
-  hr
-  .w3-container
-    h5 Dashboard
-  .w3-bar-block
-    a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
-      i.fa.fa-remove.fa-fw
-      | &nbsp; Close Menu
-    a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
-      i.fa.fa-users.fa-fw
-      | &nbsp; Overview
-    a.w3-bar-item.w3-button.w3-padding(href='/income')
-      i.fa.fa-users.fa-fw
-      | &nbsp; Income
-    a.w3-bar-item.w3-button.w3-padding(href='/expense')
-      i.fa.fa-bullseye.fa-fw
-      | &nbsp; Expenses
-    a.w3-bar-item.w3-button.w3-padding(href='/transfer')
-      i.fa.fa-exchange.fa-fw
-      | &nbsp; Transfer
-    a.w3-bar-item.w3-button.w3-padding(href='/account')
-      i.fa.fa-diamond.fa-fw
-      | &nbsp; Accounts
-    a.w3-bar-item.w3-button.w3-padding(href='/category')
-      i.fa.fa-bell.fa-fw
-      | &nbsp; Category
-    a.w3-bar-item.w3-button.w3-padding(href='/report')
-      i.fa.fa-bank.fa-fw
-      | &nbsp; Report
-    a.w3-bar-item.w3-button.w3-padding(href='chart.html')
-      i.fa.fa-history.fa-fw
-      | &nbsp; Charts
-    br
-    br
-// Overlay effect when opening sidebar on small screens
-#myOverlay.w3-overlay.w3-hide-large.w3-animate-opacity(onclick='w3_close()' style='cursor:pointer' title='close side menu')
-// !PAGE CONTENT!
-.w3-main(style='margin-left:300px;margin-top:43px;')
-  // Header
-  -function prettyDate(dateString){
-      //if it's already a date object and not a string you don't need this line:
-      -var date = new Date(dateString);
-      -var d = date.getDate();
-      -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-      -var m = monthNames[date.getMonth()];
-      -var y = date.getFullYear();
-      -return d+' '+m+' '+y;}
-  header.w3-container(style='padding-top:22px')
-    h5
-      b
-        i.fa.fa-dashboard
-        |  My Dashboard
-  .w3-panel
-    table.table.table-bordered
-      caption Account
-      thead
-        tr
-        tr
-          td No
-          td Accounts
-          td Account Balance
-          td Category
-          td CreateDate
-      tbody
-      each a ,index in list
-        tr
-          td #{index+1}
-          td #{a.account_name}
-          td #{a.account_balance}
-          td #{a.account_category}
-          td #{(a.account_createdate)}
-    table.table.table-bordered
-      caption Income
-      thead
-        tr
-        tr
-          td No
-          td Income From
-          td Income Note
-          td Income Amount
-          td Income Date
-      tbody
-      each b, index in list1
-        tr
-          td #{index+1}
-          td #{b.income_from}
-          td #{b.income_notes}
-          td #{b.income_amount}
-          td #{(b.income_date)}
-    table.table.table-bordered
-      caption Expense
-      thead
-        tr
-        tr
-          td No
-          td Expense to
-          td Expense Note
-          td Expense Amount
-          td Expense Date
-        tbody
-        each c, index in list2
-          tr
-            td #{index+1}
-            td #{c.expense_to}
-            td #{c.expense_notes}
-            td #{c.expense_amount}
-            td #{(c.expense_date)}
-  hr
-  br
-  // Footer
-  //
-    <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-  // End page content
-script.
-  // Get the Sidebar
-  var mySidebar = document.getElementById("mySidebar");
-  // Get the DIV with overlay effect
-  var overlayBg = document.getElementById("myOverlay");
-  // Toggle between showing and hiding the sidebar, and add overlay effect
-  function w3_open() {
-  if (mySidebar.style.display === 'block') {
-  mySidebar.style.display = 'none';
-  overlayBg.style.display = "none";
-  } else {
-  mySidebar.style.display = 'block';
-  overlayBg.style.display = "block";
-  }
-  }
-  // Close the sidebar with the close button
-  function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-  }
-  // logoutjs
-  function w3_logout(){
-  window.location.replace('/');
-  }
+head
+  meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+  // Meta, title, CSS, favicons, etc.
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Dashboard
+
+  // Bootstrap
+  link(rel='stylesheet' href='../vendors/bootstrap/dist/css/bootstrap.min.css')
+  // Font Awesome
+  link(rel='stylesheet' href='../vendors/font-awesome/css/font-awesome.min.css' )
+  // NProgress
+  link(href='../vendors/nprogress/nprogress.css' rel='stylesheet')
+  // bootstrap-daterangepicker
+  link(href='../vendors/bootstrap-daterangepicker/daterangepicker.css' rel='stylesheet')
+  // Custom Theme Style
+  link(href='../build/css/custom.min.css' rel='stylesheet')
+  link(href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+  script(src="https://www.gstatic.com/charts/loader.js")
+  script.
+
+body.nav-md
+  .container.body
+    .main_container
+      .col-md-3.left_col
+        .left_col.scroll-view
+          .navbar.nav_title(style='border: 0;')
+            a.site_title.d-flex.p-3.bg-secondary(href='index.html')
+              img.img-circle(src='images/logo.jpg')
+              span &nbsp;Prima Cash
+          .clearfix
+          // menu profile quick info
+          .profile.clearfix
+            .profile_pic
+              img.img-circle.profile_img(src='images/img.jpg' alt='...')
+            .profile_info
+              span Welcome,
+              h2 #{username}
+          // /menu profile quick info
+          br
+          // sidebar menu
+          #sidebar-menu.main_menu_side.hidden-print.main_menu
+            .menu_section
+              h3 General
+              ul.nav.side-menu
+                li.active
+                  a
+                    i.fa.fa-home
+                    |  Home 
+                li
+                  a(href='/account')
+                    i.fa.fa-users
+                    |  Account 
+                li
+                  a(href='/category')
+                    i.fa.fa-list-ol
+                    |  Category 
+                li
+                  a
+                    i.fa.fa-money
+                    |  Transaction 
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='/income') Income
+                    li
+                      a(href='/expense') Expense
+                    li
+                      a(href='/transfer') Transfer
+                li
+                  a
+                    i.fa.fa-clipboard
+                    |  Report
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='/report/ac') Account&amp;Category Report
+                    li
+                      a(href='/report/cob') Chart Of Balance
+                    li
+                      a(href='media_gallery.html') Expense Report
+                    li
+                      a(href='typography.html') Transfer Report
+                li
+                  a
+                    i.fa.fa-bar-chart-o
+                    |  Charts 
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='general_elements.html') Income Chart
+                    li
+                      a(href='media_gallery.html') Expense Chart
+                    li
+                      a(href='typography.html') Transfer Chart
+                    li
+                      a(href='chart.html') All Chart
+            .menu_section
+              h3 Live On
+              ul.nav.side-menu
+                li
+                  a
+                    i.fa.fa-bug
+                    |  Additional Pages 
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='e_commerce.html') E-commerce
+                    li
+                      a(href='projects.html') Projects
+                    li
+                      a(href='project_detail.html') Project Detail
+                    li
+                      a(href='contacts.html') Contacts
+                    li
+                      a(href='profile.html') Profile
+                li
+                  a
+                    i.fa.fa-windows
+                    |  Extras 
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='page_403.html') 403 Error
+                    li
+                      a(href='page_404.html') 404 Error
+                    li
+                      a(href='page_500.html') 500 Error
+                    li
+                      a(href='plain_page.html') Plain Page
+                    li
+                      a(href='login.html') Login Page
+                    li
+                      a(href='pricing_tables.html') Pricing Tables
+                li
+                  a
+                    i.fa.fa-sitemap
+                    |  Multilevel Menu 
+                    span.fa.fa-chevron-down
+                  ul.nav.child_menu
+                    li
+                      a(href='#level1_1') Level One
+                    li
+                      a
+                        | Level One
+                        span.fa.fa-chevron-down
+                      ul.nav.child_menu
+                        li.sub_menu
+                          a(href='level2.html') Level Two
+                        li
+                          a(href='#level2_1') Level Two
+                        li
+                          a(href='#level2_2') Level Two
+                    li
+                      a(href='#level1_2') Level One
+                li
+                  a(href='javascript:void(0)')
+                    i.fa.fa-laptop
+                    |  Landing Page 
+                    span.label.label-success.pull-right Coming Soon
+          // /sidebar menu
+          // /menu footer buttons
+          .sidebar-footer.hidden-small
+            a(data-toggle='tooltip' data-placement='top' title='Settings')
+              span.glyphicon.glyphicon-cog(aria-hidden='true')
+            a(data-toggle='tooltip' data-placement='top' title='FullScreen')
+              span.glyphicon.glyphicon-fullscreen(aria-hidden='true')
+            a#refresh(data-toggle='tooltip' data-placement='top' title='Refresh')
+              span.glyphicon.glyphicon-refresh(aria-hidden='true')
+            a(data-toggle='tooltip' data-placement='top' title='Logout' onclick='logout();')
+              span.glyphicon.glyphicon-log-out(aria-hidden='true')
+          // /menu footer buttons
+      // top navigation
+
+      .top_nav
+        .nav_menu
+          nav
+            .nav.toggle
+              a#menu_toggle
+                i.fa.fa-bars
+            ul.nav.navbar-nav.navbar-right
+              li
+                a.user-profile.dropdown-toggle(href='javascript:;' data-toggle='dropdown' aria-expanded='false')
+                  img(src='images/img.jpg' alt='')
+                  | #{username}
+                  span.fa.fa-angle-down
+                ul.dropdown-menu.dropdown-usermenu.pull-right
+                  li
+                    a(href='javascript:;')  Profile
+                  li
+                    a(href='javascript:;')
+                      span.badge.bg-red.pull-right 50%
+                      span Settings
+                  li
+                    a(href='javascript:;') Help
+                  li
+                    a(onclick='logout();')
+                      i.fa.fa-sign-out.pull-right
+                      |  Log Out
+              li.dropdown(role='presentation')
+                a.dropdown-toggle.info-number(href='javascript:;' data-toggle='dropdown' aria-expanded='false')
+                  i.fa.fa-envelope-o
+                  span.badge.bg-green 6
+                ul#menu1.dropdown-menu.list-unstyled.msg_list(role='menu')
+                  li
+                    a
+                      span.image
+                        img(src='images/img.jpg' alt='Profile Image')
+                      span
+                        span John Smith
+                        span.time 3 mins ago
+                      span.message
+                        | Film festivals used to be do-or-die moments for movie makers. They were where...
+                  li
+                    a
+                      span.image
+                        img(src='images/img.jpg' alt='Profile Image')
+                      span
+                        span John Smith
+                        span.time 3 mins ago
+                      span.message
+                        | Film festivals used to be do-or-die moments for movie makers. They were where...
+                  li
+                    a
+                      span.image
+                        img(src='images/img.jpg' alt='Profile Image')
+                      span
+                        span John Smith
+                        span.time 3 mins ago
+                      span.message
+                        | Film festivals used to be do-or-die moments for movie makers. They were where...
+                  li
+                    a
+                      span.image
+                        img(src='images/img.jpg' alt='Profile Image')
+                      span
+                        span John Smith
+                        span.time 3 mins ago
+                      span.message
+                        | Film festivals used to be do-or-die moments for movie makers. They were where...
+                  li
+                    .text-center
+                      a
+                        strong See All Alerts
+                        i.fa.fa-angle-right
+
+      // /top navigation
+      // page content
+      .right_col(role='main')
+        div
+          .row.top_tiles
+            .animated.flipInY.col-lg-4.col-md-3.col-sm-6.col-xs-12
+              .tile-stats
+                .icon
+                  i.fa.fa-plus-square
+                #income_balance.count #{totalincome}
+                h3 Income
+            .animated.flipInY.col-lg-4.col-md-3.col-sm-6.col-xs-12
+              .tile-stats
+                .icon
+                  i.fa.fa-minus-square
+                #expense_balance.count #{totalexpense}
+                h3 Expense
+            .animated.flipInY.col-lg-4.col-md-3.col-sm-6.col-xs-12
+              .tile-stats
+                .icon
+                  i.fa.fa-exchange
+                #transfer_balance.count #{totaltransfer}
+                h3 Transfer
+          .row
+            .col-md-12
+              .x_panel
+                .x_title
+                  h2
+                    | Transaction Summary 
+                    small Weekly progress
+                  ul.nav.navbar-right.panel_toolbox
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .filter
+                    #reportrange.pull-right(style='background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc')
+                      i.glyphicon.glyphicon-calendar.fa.fa-calendar
+                      span December 30, 2014 - January 28, 2015
+                      b.caret
+                  .clearfix
+                .x_content
+                  .col-md-12.col-sm-12.col-xs-12
+                    .demo-container(style='height:300px')
+                      #chart_plot_02.demo-placeholder
+                  
+          .row
+            .col-md-12
+              .x_panel
+                .x_title
+                  h2
+                    | Transaction Summary 
+                    small All account
+                    
+                  ul.nav.navbar-right.panel_toolbox
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  .row(style='border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;')
+                    .col-md-6(style='overflow:hidden;')
+                      #main_chart(style="width: 600px;height:400px;")
+                    .col-md-2
+                      select#select_duration.form-control(onchange="selectaccount()" name="duration")
+                        option(value="All") Select All Time
+                        option(value="today") Today
+                        option(value="lastweek") Last Week
+                        option(value="lastmonth") Last Month
+                        option(value="lastyear") Last Year
+                    .col-md-2
+                      select#select_account.form-control(onchange="selectaccount()" name="duration1")
+                        option(value="All") Select All Account
+                      
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | List Income
+                  ul.navbar-right.panel_toolbox(style='list-style-type: none;')
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  #listincome_table(style="width:325px;height:225px;")
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | List Expense
+                  ul.navbar-right.panel_toolbox(style='list-style-type: none;')
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  #listexpense_table(style="width:325px;height:225px;")
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | List Transfer
+                  ul.navbar-right.panel_toolbox(style='list-style-type: none;')
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  #listtransfer_table(style="width:325px;height:225px;")
+          .row
+            .col-md-8
+              .x_panel
+                .x_title
+                  h2
+                    | Chart List Account
+                  ul.navbar-right.panel_toolbox(style='list-style-type: none;')
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  .row(style='border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;')
+                    #listaccount_chart(style="height:400px;")
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | List Account
+                  ul.navbar-right.panel_toolbox(style='list-style-type: none;')
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                  .clearfix
+                .x_content
+                  //- .row.w3-margin-bottom
+                  //-   .table-responsive-md.col-md-12
+                  //-     table.table.table-hover.table-striped.table-bordered(id="main_table" cellpadding="1" cellspacing="1")
+                  //-       thead
+                  //-         tr
+                  //-           td Account Name
+                  //-           td Account Category
+                  //-           td Account Current Balance
+                  #main_table(style="width: 325px;height:225px;")
+          .row
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | Top Profiles 
+                    small Sessions
+                  ul.nav.navbar-right.panel_toolbox
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                    li.dropdown
+                      a.dropdown-toggle(href='#' data-toggle='dropdown' role='button' aria-expanded='false')
+                        i.fa.fa-wrench
+                      ul.dropdown-menu(role='menu')
+                        li
+                          a(href='#') Settings 1
+                        li
+                          a(href='#') Settings 2
+                    li
+                      a.close-link
+                        i.fa.fa-close
+                  .clearfix
+                .x_content
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item One Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Three Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | Top Profiles 
+                    small Sessions
+                  ul.nav.navbar-right.panel_toolbox
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                    li.dropdown
+                      a.dropdown-toggle(href='#' data-toggle='dropdown' role='button' aria-expanded='false')
+                        i.fa.fa-wrench
+                      ul.dropdown-menu(role='menu')
+                        li
+                          a(href='#') Settings 1
+                        li
+                          a(href='#') Settings 2
+                    li
+                      a.close-link
+                        i.fa.fa-close
+                  .clearfix
+                .x_content
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item One Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Three Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            .col-md-4
+              .x_panel
+                .x_title
+                  h2
+                    | Top Profiles 
+                    small Sessions
+                  ul.nav.navbar-right.panel_toolbox
+                    li
+                      a.collapse-link
+                        i.fa.fa-chevron-up
+                    li.dropdown
+                      a.dropdown-toggle(href='#' data-toggle='dropdown' role='button' aria-expanded='false')
+                        i.fa.fa-wrench
+                      ul.dropdown-menu(role='menu')
+                        li
+                          a(href='#') Settings 1
+                        li
+                          a(href='#') Settings 2
+                    li
+                      a.close-link
+                        i.fa.fa-close
+                  .clearfix
+                .x_content
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item One Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Two Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  article.media.event
+                    a.pull-left.date
+                      p.month April
+                      p.day 23
+                    .media-body
+                      a.title(href='#') Item Three Title
+                      p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      // /page content
+      // footer content
+      footer
+        .pull-right
+          | Gentelella - Bootstrap Admin Template by 
+          a(href='https://colorlib.com') Colorlib
+        .clearfix
+      // /footer content
+  script(src="./js/axios.min.js")
+  // jQuery
+  script(type="text/javascript" src='../vendors/jquery/dist/jquery.min.js')
+  // Bootstrap
+  script(type="text/javascript" src='../vendors/bootstrap/dist/js/bootstrap.min.js')
+  // FastClick
+  script(type="text/javascript" src='../vendors/fastclick/lib/fastclick.js')
+  // NProgress
+  script(type="text/javascript" src='../vendors/nprogress/nprogress.js')
+  // Chart.js
+  script(type="text/javascript" src='../vendors/Chart.js/dist/Chart.min.js')
+  // jQuery Sparklines
+  script(type="text/javascript" src='../vendors/jquery-sparkline/dist/jquery.sparkline.min.js')
+  // Flot
+  script(type="text/javascript" src='../vendors/Flot/jquery.flot.js')
+  script(type="text/javascript" src='../vendors/Flot/jquery.flot.pie.js')
+  script(type="text/javascript" src='../vendors/Flot/jquery.flot.time.js')
+  script(type="text/javascript" src='../vendors/Flot/jquery.flot.stack.js')
+  script(type="text/javascript" src='../vendors/Flot/jquery.flot.resize.js')
+  // Flot plugins
+  script(type="text/javascript" src='../vendors/flot.orderbars/js/jquery.flot.orderBars.js')
+  script(type="text/javascript" src='../vendors/flot-spline/js/jquery.flot.spline.min.js')
+  script(type="text/javascript" src='../vendors/flot.curvedlines/curvedLines.js')
+  // DateJS
+  script(type="text/javascript" src='../vendors/DateJS/build/date.js')
+  // bootstrap-daterangepicker
+  script(type="text/javascript" src='../vendors/moment/min/moment.min.js')
+  script(type="text/javascript" src='../vendors/bootstrap-daterangepicker/daterangepicker.js')
+  // Custom Theme Scripts
+  script(type="text/javascript" src='../build/js/custom.min.js')
+  script(type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+  //- script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js')
+
+  script.
+    
+    $('#refresh').click(function() {
+        location.reload();
+    });
+    //- var dataincome=[],dataexpense=[],datatransfer=[]
+    axios.get('/is_login')
+      .then(response=> {
+        if(!response.data.status){
+          window.location.replace ("/");
+          console.log("Masuk")
+        }
+        axios.get('/alltransaction')
+        .then(response=> {
+          console.log(response.data)
+          dataincome=response.data.dataincome
+          dataexpense=response.data.dataexpense
+          datatransfer=response.data.datatransfer
+
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart']});
+
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawChart);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+              ['Income', response.data.totalincome],
+              ['Expense', response.data.totalexpense],
+              ['Transfer', response.data.totaltransfer]
+            ]);
+
+            // Set chart options
+            var options = {
+              'legend':'bottom',
+              'tooltip':{'text':'percentage'},
+              'width':600,
+              'height':400,
+              'pieHole': 0.4,};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('main_chart'));
+            chart.draw(data, options);
+          }
+
+          var rows=[], rowsexpense=[], rowstransfer=[]
+          for(var i=0;i<response.data.dataincome.length;i++){
+            rows.push([response.data.dataincome[i]["account_name"],  parseInt(response.data.dataincome[i]["income_amount"]),response.data.dataincome[i]["income_date"]])
+            console.log(rows[i])
+          }
+          for(var i=0;i<response.data.dataexpense.length;i++){
+            rowsexpense.push([response.data.dataexpense[i]["account_name"],  parseInt(response.data.dataexpense[i]["expense_amount"]),response.data.dataexpense[i]["expense_date"]])
+            console.log(rowsexpense[i])
+          }
+          for(var i=0;i<response.data.datatransfer.length;i++){
+            rowstransfer.push([response.data.datatransfer[i]["account_src"], response.data.datatransfer[i]["account_dest"],  parseInt(response.data.datatransfer[i]["transfer_amount"]),response.data.datatransfer[i]["transfer_date"]])
+            console.log(rowstransfer[i])
+          }
+          google.charts.load('current', {'packages':['table']});
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawTable);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawTable() {
+            var datatable = new google.visualization.DataTable();
+            datatable.addColumn('string', 'Nama');
+            datatable.addColumn('number', 'Amount');
+            datatable.addColumn('string', 'Date');
+            //- datatable.addRows([
+            //-   ['Mike',  {v: 10000, f: '$10,000'}, true],
+            //-   ['Jim',   {v: 8000,  f: '$8,000'},  false],
+            //-   ['Alice', {v: 12500, f: '$12,500'}, true],
+            //-   ['Bob',   {v: 7000,  f: '$7,000'},  true] 
+            //- ]);
+            datatable.addRows(rows);
+            var table = new google.visualization.Table(document.getElementById('listincome_table'));
+            table.draw(datatable, {showRowNumber: true, width: '100%'});
+          }
+
+          google.charts.load('current', {'packages':['table']});
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawTable1);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawTable1() {
+            var datatable = new google.visualization.DataTable();
+            datatable.addColumn('string', 'Nama');
+            datatable.addColumn('number', 'Amount');
+            datatable.addColumn('string', 'Date');
+            //- datatable.addRows([
+            //-   ['Mike',  {v: 10000, f: '$10,000'}, true],
+            //-   ['Jim',   {v: 8000,  f: '$8,000'},  false],
+            //-   ['Alice', {v: 12500, f: '$12,500'}, true],
+            //-   ['Bob',   {v: 7000,  f: '$7,000'},  true] 
+            //- ]);
+            datatable.addRows(rowsexpense);
+            var table = new google.visualization.Table(document.getElementById('listexpense_table'));
+            table.draw(datatable, {showRowNumber: true, width: '100%'});
+          }
+
+          google.charts.load('current', {'packages':['table']});
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawTable2);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawTable2() {
+            var datatable = new google.visualization.DataTable();
+            datatable.addColumn('string', 'Dari');
+            datatable.addColumn('string', 'Kepada');
+            datatable.addColumn('number', 'Amount');
+            datatable.addColumn('string', 'Date');
+            //- datatable.addRows([
+            //-   ['Mike',  {v: 10000, f: '$10,000'}, true],
+            //-   ['Jim',   {v: 8000,  f: '$8,000'},  false],
+            //-   ['Alice', {v: 12500, f: '$12,500'}, true],
+            //-   ['Bob',   {v: 7000,  f: '$7,000'},  true] 
+            //- ]);
+            datatable.addRows(rowstransfer);
+            var table = new google.visualization.Table(document.getElementById('listtransfer_table'));
+            table.draw(datatable, {showRowNumber: true, width: '100%'});
+          }
+
+          axios.get('/account/listaccount')
+          .then(response=> {
+            console.log(response.data.dataaccount)
+            var rows=[], rowschart=[]
+            var select_account = document.getElementById("select_account");
+            for(var i=0;i<response.data.dataaccount.length;i++){
+              var option = document.createElement("option");
+              option.text=response.data.dataaccount[i]["account_name"];
+              option.value=response.data.dataaccount[i]["account_name"];
+              console.log(response.data.dataaccount[i]["account_name"])
+              select_account.add(option,null);
+              if(response.data.dataaccount[i]["account_status"]=="1"){
+                rows.push([response.data.dataaccount[i]["account_name"],  response.data.dataaccount[i]["account_fullcurrency"].substring(4)+" "+response.data.dataaccount[i]["account_balance_current"], true])
+                rowschart.push([response.data.dataaccount[i]["account_name"],  parseInt(response.data.dataaccount[i]["account_balance_current"])])
+                console.log(rowschart[i])
+              }
+              else{
+                rows.push([response.data.dataaccount[i]["account_name"],  response.data.dataaccount[i]["account_fullcurrency"].substring(4)+" "+response.data.dataaccount[i]["account_balance_current"], false])
+                rowschart.push([response.data.dataaccount[i]["account_name"],  parseInt(response.data.dataaccount[i]["account_balance_current"])])
+                console.log(rowschart[i])
+              }
+            }
+
+            
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            
+            function drawChart() {
+              // Create the data table.
+              var data = new google.visualization.DataTable();
+              data.addColumn('string', 'Nama');
+              data.addColumn('number', 'Amount');
+              data.addRows(rowschart);
+
+              // Set chart options
+              var options = {
+                'legend':'bottom',
+                'tooltip':{'text':'percentage'},
+                'width':600,
+                'height':400,
+                'pieHole': 0.4,};
+
+              // Instantiate and draw our chart, passing in some options.
+              var chart = new google.visualization.PieChart(document.getElementById('listaccount_chart'));
+              chart.draw(data, options);
+            }
+            //- $(document).ready( function () {
+            //-   $('#main_table').DataTable({
+            //-     keys: true,
+            //-     "order": [[ 0, "desc" ]],
+            //-     data:rows
+            //-   });
+            //- });
+            
+            //- $('#main_table').DataTable( {
+            //-     data: rows,
+            //-     columns: [
+            //-         { data: 'Name' },
+            //-         { data: 'Current_balance' },
+            //-         { data: 'Status' }
+            //-     ]
+            //- } );
+            google.charts.load('current', {'packages':['table']});
+            google.charts.setOnLoadCallback(drawTable);
+            
+            function drawTable() {
+              var datatable = new google.visualization.DataTable();
+              datatable.addColumn('string', 'Nama');
+              datatable.addColumn('string', 'Current_Balance');
+              datatable.addColumn('boolean', 'Status');
+              //- datatable.addRows([
+              //-   ['Mike',  {v: 10000, f: '$10,000'}, true],
+              //-   ['Jim',   {v: 8000,  f: '$8,000'},  false],
+              //-   ['Alice', {v: 12500, f: '$12,500'}, true],
+              //-   ['Bob',   {v: 7000,  f: '$7,000'},  true] 
+              //- ]);
+              datatable.addRows(rows);
+              var table = new google.visualization.Table(document.getElementById('main_table'));
+              table.draw(datatable, {showRowNumber: true, width: '100%'});
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    function logout(){
+      axios.get('/logout')
+        .then(response=> {
+            window.location.replace ("/");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    function selectaccount(){
+      //- var select_account = document.getElementById("select_account");
+      //- var totalincome=0,totalexpense=0,totaltransfer=0;
+      var notransaction=1
+      axios.post('/alltransaction',{
+        select_duration:document.getElementById('select_duration').value,
+        select_account:document.getElementById('select_account').value
+      })
+      .then(response=> {
+        
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          if(response.data.totalincome==0 && response.data.totalexpense==0 && response.data.totaltransfer==0){
+            data.addRows([
+              ['No Transaction', notransaction]
+            ]);
+          }
+          else{
+            data.addRows([
+              ['Income', response.data.totalincome],
+              ['Expense', response.data.totalexpense],
+              ['Transfer', response.data.totaltransfer]
+            ]);
+          }
+
+          // Set chart options
+          var options = {
+            'legend':'bottom',
+            'tooltip':{'text':'percentage'},
+            'width':600,
+            'height':400,
+            'pieHole': 0.4,};
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('main_chart'));
+          chart.draw(data, options);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      for(var i=0;i<dataincome;i++){
+        if(select_account.value=="All"){
+
+        }
+        if(response.data.dataaccount[i]["account_status"]=="1"){
+          rows.push([response.data.dataaccount[i]["account_name"],  response.data.dataaccount[i]["account_fullcurrency"].substring(4)+" "+response.data.dataaccount[i]["account_balance_current"], true])
+          rowschart.push([response.data.dataaccount[i]["account_name"],  parseInt(response.data.dataaccount[i]["account_balance_current"])])
+          console.log(rowschart[i])
+        }
+        else{
+          rows.push([response.data.dataaccount[i]["account_name"],  response.data.dataaccount[i]["account_fullcurrency"].substring(4)+" "+response.data.dataaccount[i]["account_balance_current"], false])
+          rowschart.push([response.data.dataaccount[i]["account_name"],  parseInt(response.data.dataaccount[i]["account_balance_current"])])
+          console.log(rowschart[i])
+        }
+      }
+    }
+    
+    
+    //- // Load the Visualization API and the corechart package.
+    //-   google.charts.load('current', {'packages':['corechart']});
+
+    //-   // Set a callback to run when the Google Visualization API is loaded.
+    //-   google.charts.setOnLoadCallback(drawChart);
+
+    //-   // Callback that creates and populates a data table,
+    //-   // instantiates the pie chart, passes in the data and
+    //-   // draws it.
+    //-   function drawChart() {
+
+    //-     // Create the data table.
+    //-     var data = new google.visualization.DataTable();
+    //-     data.addColumn('string', 'Topping');
+    //-     data.addColumn('number', 'Slices');
+    //-     data.addRows([
+    //-       ['Mushrooms', 3],
+    //-       ['Onions', 1],
+    //-       ['Olives', 1],
+    //-       ['Zucchini', 1],
+    //-       ['Pepperoni', 2]
+    //-     ]);
+
+    //-     // Set chart options
+    //-     var options = {'title':'How Much Pizza I Ate Last Night',
+    //-                    'width':400,
+    //-                    'height':300};
+
+    //-     // Instantiate and draw our chart, passing in some options.
+    //-     var chart = new google.visualization.PieChart(document.getElementById('main_chart'));
+    //-     chart.draw(data, options);
+    //-   }
+
+    //- var myChart = echarts.init(document.getElementById('main_chart'));
+
+    //- var options = {
+    //-   labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
+    //-   chart: {
+    //-     type: 'donut'
+    //-   }
+    //-   dataLabels: {
+    //-     enabled: true,
+    //-     formatter: function (val) {
+    //-       return val + "%"
+    //-     },
+    //-   }
+    //- }
+    //- var option = {
+    //-   tooltip: {
+    //-       trigger: 'item',
+    //-       formatter: "{a} <br/>{b}: {c} ({d}%)"
+    //-   },
+    //-   legend: {
+    //-       orient: 'vertical',
+    //-       x: 'left',
+    //-       data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    //-   },
+    //-   series: [
+    //-     {
+    //-       name:'访问来源',
+    //-       type:'pie',
+    //-       radius: ['50%', '70%'],
+    //-       avoidLabelOverlap: false,
+    //-       label: {
+    //-         normal: {
+    //-             show: false,
+    //-             position: 'center'
+    //-         },
+    //-         emphasis: {
+    //-             show: true,
+    //-             textStyle: {
+    //-                 fontSize: '30',
+    //-                 fontWeight: 'bold'
+    //-             }
+    //-         }
+    //-       },
+    //-       labelLine: {
+    //-           normal: {
+    //-               show: false
+    //-           }
+    //-       },
+    //-       data:[
+    //-           {value:335, name:'直接访问'},
+    //-           {value:310, name:'邮件营销'},
+    //-           {value:234, name:'联盟广告'},
+    //-           {value:135, name:'视频广告'},
+    //-           {value:1548, name:'搜索引擎'}
+    //-       ]
+    //-     }
+    //-   ]
+    //- };
+    //- var chart = new ApexCharts(document.getElementById('main_chart'), options);
+
+    //- chart.render();
+    //- myChart.setOption(option);
+      

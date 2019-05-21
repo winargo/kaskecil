@@ -4,74 +4,200 @@ meta(charset='UTF-8')
 meta(name='viewport' content='width=device-width, initial-scale=1')
 link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
 link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway')
-link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB' crossorigin='anonymous')
+link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous")
+//link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js' integrity='sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4' crossorigin='anonymous')
-script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+//script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+//script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js')
+
+script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js' integrity='sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js' integrity='sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k' crossorigin='anonymous')
+
+script(type='text/javascript' src='https://cdn.jsdelivr.net/jquery/latest/jquery.min.js')
+script(type='text/javascript' src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js')
+link(rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css')
+<!-- Custom styles for this template -->
+link(href="css/simple-sidebar.css" rel="stylesheet")
+//dataTable
+link(rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css')
+link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css')
+link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap4.min.css')
+//- link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css')
+//- link(rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.18/css/dataTables.foundation.min.css')
+script(type='text/javascript' charset="utf8" src='https://code.jquery.com/jquery-3.3.1.js')
+script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js')
+script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js')
+script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js')
+script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/keytable/2.4.1/js/dataTables.keyTable.min.js')
+
+//- script(type='text/javascript' charset="utf8" src='https://cdn.datatables.net/1.10.18/js/dataTables.foundation.min.js')
 style.
   html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   a:hover{
-  text-decoration: none;
+    text-decoration: none;
   }
+  /* Center the loader */
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+
+  
+body(onload='loading()')
 // Top container
-.w3-bar.w3-top.w3-black.w3-large(style='z-index:4')
+.w3-bar.w3-top.w3-black.w3-large(style='z-index:4;opacity:0.8')
   button.w3-bar-item.w3-button.w3-hide-large.w3-hover-none.w3-hover-text-light-grey(onclick='w3_open();')
     i.fa.fa-bars
     |  &nbsp;Menu
-  span.w3-bar-item.w3-right Logo
+  button.w3-right.w3-btn.btn-primary.w3-padding(onclick='w3_logout()') Logout
+  a.w3-bar-item.w3-text-white(href='#')
+    | PrimaCash
 // Sidebar/menu
-nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;width:300px;')
-  br
-  .w3-container.w3-row
-    .w3-col.s4
-      img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
-    .w3-col.s8.w3-bar
-      span
-        | Welcome,
-        strong Mike
-      br
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-envelope
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-user
-      a.w3-bar-item.w3-button(href='#')
-        i.fa.fa-cog
-  hr
-  .w3-container
-    h5 Dashboard
-  .w3-bar-block
-    a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
-      i.fa.fa-remove.fa-fw
-      | &nbsp; Close Menu
-    a.w3-bar-item.w3-button.w3-padding(href='/home')
-      i.fa.fa-users.fa-fw
-      | &nbsp; Overview
-    a.w3-bar-item.w3-button.w3-padding(href='/income')
-      i.fa.fa-users.fa-fw
-      | &nbsp; Income
-    a.w3-bar-item.w3-button.w3-padding(href='/expense')
-      i.fa.fa-bullseye.fa-fw
-      | &nbsp; Expenses
-    a.w3-bar-item.w3-button.w3-padding(href='/transfer')
-      i.fa.fa-exchange.fa-fw
-      | &nbsp; Transfer
-    a.w3-bar-item.w3-button.w3-padding(href='/account')
-      i.fa.fa-diamond.fa-fw
-      | &nbsp; Accounts
-    a.w3-bar-item.w3-button.w3-padding(href='/category')
-      i.fa.fa-bell.fa-fw
-      | &nbsp; Category
-    a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
-      i.fa.fa-bank.fa-fw
-      | &nbsp; Report
-    a.w3-bar-item.w3-button.w3-padding(href='/chart.html')
-      i.fa.fa-history.fa-fw
-      | &nbsp; Charts
-    br
-    br
+nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;width:300px')
+  #wrapper.toggled(style="margin-top:43px;")
+    // Sidebar
+    #sidebar-wrapper
+      ul.sidebar-nav.w3-margin-top
+        .w3-container.w3-row
+          .w3-col.s4
+            img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
+          .w3-col.s8.w3-bar.w3-text-white
+            span
+              | Welcome,
+              strong #{username}
+            br
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-envelope
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-user
+            a.w3-bar-item.w3-button(href='#')
+              i.fa.fa-cog
+        
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/dashboard')
+            i.fa.fa-home.fa-fw.w3-left
+              | &nbsp; Dashboard
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/income')
+            i.fa.fa-arrow-circle-down.fa-fw.w3-left
+              | &nbsp; Income 
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/expense')
+            i.fa.fa-arrow-circle-up.fa-fw.w3-left
+              | &nbsp; Expense
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/transfer')
+            i.fa.fa-exchange-alt.fa-fw.w3-left
+              | &nbsp; Transfer
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/account')
+            i.fa.fa-users.fa-fw.w3-left
+              | &nbsp; Account
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='/category')
+            i.fa.fa-list-ol.fa-fw.w3-left
+              | &nbsp; Category
+        li
+          a.w3-bar-item.w3-button.w3-padding-16.w3-blue(href='#')
+            i.fa.fa-clipboard-list.fa-fw.w3-left
+              | &nbsp; Report
+        li
+          a.w3-bar-item.w3-button.w3-padding-16(href='chart.html')
+            i.fa.fa-chart-bar.fa-fw.w3-left
+              | &nbsp; Chart
+  //- br
+  //- .w3-container.w3-row(style='margin-bottom:22px')
+  //-   .w3-col.s4
+  //-     img.w3-circle.w3-margin-right(src='https://www.w3schools.com/w3images/avatar2.png' style='width:46px')
+  //-   .w3-col.s8.w3-bar
+  //-     span
+  //-       | Welcome,
+  //-       strong #{username}
+  //-     br
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-envelope
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-user
+  //-     a.w3-bar-item.w3-button(href='#')
+  //-       i.fa.fa-cog
+  //- hr
+  //- .w3-container
+  //-   h5 Dashboard
+  //- .w3-bar-block
+  //-   a.w3-bar-item.w3-button.w3-padding-16.w3-hide-large.w3-dark-grey.w3-hover-black(href='#' onclick='w3_close()' title='close menu')
+  //-     i.fa.fa-remove.fa-fw
+  //-     | &nbsp; Close Menu
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/home')
+  //-     i.fa.fa-home.fa-fw
+  //-     | &nbsp; Overview
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/income')
+  //-     i.fa.fa-users.fa-fw
+  //-     | &nbsp; Income
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/expense')
+  //-     i.fa.fa-bullseye.fa-fw
+  //-     | &nbsp; Expenses
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/transfer')
+  //-     i.fa.fa-exchange.fa-fw
+  //-     | &nbsp; Transfer
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/account')
+  //-     i.fa.fa-diamond.fa-fw
+  //-     | &nbsp; Accounts
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/category')
+  //-     i.fa.fa-bell.fa-fw
+  //-     | &nbsp; Category
+  //-   a.w3-bar-item.w3-button.w3-padding.w3-blue(href='#')
+  //-     i.fa.fa-bank.fa-fw
+  //-     | &nbsp; Report
+  //-   a.w3-bar-item.w3-button.w3-padding(href='/chart.html')
+  //-     i.fa.fa-history.fa-fw
+  //-     | &nbsp; Charts
+  //-   br
+  //-   br
 // Overlay effect when opening sidebar on small screens
 #myOverlay.w3-overlay.w3-hide-large.w3-animate-opacity(onclick='w3_close()' style='cursor:pointer' title='close side menu')
 // !PAGE CONTENT!
@@ -81,80 +207,539 @@ nav#mySidebar.w3-sidebar.w3-collapse.w3-white.w3-animate-left(style='z-index:3;w
     h5
       b
         i.fa.fa-dashboard
-        |  My Dashboard
-  .w3-panel
+        |  My Report
+  ul#pills-tab.nav.nav-pills.mb-3(role='tablist' style='margin-left:15px;display:none')
+    li.nav-item
+      //- if(id==1)
+      a#pills-home-tab.nav-link(class='active' style='cursor:pointer' data-toggle='pill' href='#pills-home' role='tab' aria-controls='pills-home' aria-selected='true') Account & Category
+      //- else
+      //-   a#pills-home-tab.nav-link(style='cursor:pointer' data-toggle='pill' href='#pills-home' role='tab' aria-controls='pills-home' aria-selected='false') Account & Category
+        
+    li.nav-item
+      //- if(id==2)
+      //-   a#pills-profile-tab.nav-link(class='active' style='cursor:pointer'  data-toggle='pill' href='#pills-profile' role='tab' aria-controls='pills-profile' aria-selected='true') Cash Flow
+      //- else
+      a#pills-profile-tab.nav-link(style='cursor:pointer'  data-toggle='pill' href='#pills-profile' role='tab' aria-controls='pills-profile' aria-selected='false') Cash Flow
 
-    // table data
-    center
-      h2 Report Table
-    br
-    hr
-    -function prettyDate(dateString){
-        //if it's already a date object and not a string you don't need this line:
-        -var date = new Date(dateString);
-        -var d = date.getDate();
-        -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-        -var m = monthNames[date.getMonth()];
-        -var y = date.getFullYear();
-        -return d+' '+m+' '+y;}
-    .row
-      .table-responsive-md.col-md-6
-        table.table.table-hover.table-bordered
-          caption income
-          thead
-            tr
-              td Income Date
-              td Income Category
-              td Income Account
-              td Income Note
-              td Income Amount
-          tbody
-          each a in listincome
-            tr
-              td #{a.income_date}
-              td #{a.income_category}
-              td #{a.income_account}
-              td #{a.income_notes}
-              td $ #{a.income_amount}
-          tfooter
-            tr
-              td(colspan='4' style='text-align:right;') Total
-              td $ #{totalIncome}
-      // expense
-      .table-responsive-md.col-md-6
-        table.table.table-hover.table-bordered
-          caption Expense
-          thead
-            tr
-              td Expense Date
-              td Expense Category
-              td Expense Account
-              td Expense Note
-              td Expense Amount
-          tbody
-          each b in listexpense
-            tr
-              td #{b.expense_date}
-              td #{b.expense_category}
-              td #{b.expense_notes}
-              td #{b.expense_account}
-              td $ #{b.expense_amount}
-          tfooter
-              tr
-                td(colspan='4' style='text-align:right;') Total
-                td $ #{totalExpense}
-  hr
+    li.nav-item
+      //- if(id==3)
+        //- a#pills-contact-tab.nav-link(class='active' style='cursor:pointer' data-toggle='pill' href='#pills-contact' role='tab' aria-controls='pills-contact' aria-selected='true') Chart of Balance
+      //- else
+      a#pills-contact-tab.nav-link(style='cursor:pointer' data-toggle='pill' href='#pills-contact' role='tab' aria-controls='pills-contact' aria-selected='false') Chart of Balance
+  #pills-tabContent.tab-content
+    //- if(id==1)
+    #loader
+    #pills-home.tab-pane.fade(class='active' role='tabpanel' aria-labelledby='pills-home-tab')
+      hr
+      .w3-panel
+        // table data
+        center
+          h2 Report Account & Category
+        br
+          //- form(action='/reportfilter1' method='post')
+          //-   .row
+          //-     .col-md-7
+          //-     .col-md-2
+                
+          //-       | Account Name
+          //-       select.form-control(name='name')
+          //-           if(selectofacc=='Select All Account' || selectofacc=='All')
+          //-             //option(value='0') Select Account Name
+          //-             option(value='All') Select All Account
+          //-             each x in listofaccount
+          //-               option(value=''+[x.account_name]) #{x.account_name}
+          //-             //option(value='All') All
+          //-           else
+          //-             option(value=''+selectofacc) #{selectofacc}
+          //-             each x in listofaccount
+          //-               if(selectofacc!=[x.account_name])
+          //-                 option(value=''+[x.account_name]) #{x.account_name}
+          //-             //if(selectofacc!="All")
+          //-             option(value='All') Select All Account
+          //-     .col-md-2 
+          //-       | Account Category
+          //-       select.form-control(name='category' required)
+          //-         if(selectcategory=="Select All Category" || selectcategory=="All")
+          //-           option(value='All') Select All Category
+          //-           each x in listcategory
+          //-             option(value=''+[x.category_name]) #{x.category_name}
+          //-           //option(value='All') All
+          //-         else
+          //-           option(value=''+selectcategory) #{selectcategory}
+          //-           each x in listcategory
+          //-             if(selectcategory!=[x.category_name])
+          //-               option(value=''+[x.category_name]) #{x.category_name}
+          //-           //if(selectcategory!="All")
+          //-           option(value='All') Select All Category
+                  
+          //-     .col-md-1
+          //-       button.btn.btn-outline-primary.form-control(style='margin-top:20px' type='submit') Filter
+          //- hr
+        -function prettyDate(dateString){
+            //if it's already a date object and not a string you don't need this line:
+            -var date = new Date(dateString);
+            -var d = date.getDate();
+            -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+            -var m = monthNames[date.getMonth()];
+            -var y = date.getFullYear();
+            -return d+' '+m+' '+y;}
+        each x in listcategory
+          .row.w3-margin-bottom
+            h3 Category : #{x.category_name}
+            .table-responsive-md.col-md-12
+              table.table.table-hover.table-striped.table-bordered(id="tableAcc"+x.category_name cellpadding="1" cellspacing="1")
+                thead
+                  tr
+                    td Account Last Used
+                    td Account Name
+                    td Account Currency
+                    td Account Category
+                    td Account Current Balance
+              //- tbody
+              //- each a in listaccount
+              //-   tr
+              //-     td #{a.account_lastused}
+              //-     td #{a.account_name}
+              //-     td #{a.account_currency}
+              //-     td #{a.account_category}
+              //-     td #{symbol} #{a.account_balance}
+              //- tfooter
+              //-   tr
+              //-     td(colspan='4' style='text-align:right;') Total
+              //-     td #{symbol} #{totalAccount}   
+      hr
+    //- else if(id!=1)
+    //-   #pills-home.tab-pane.fade.show(role='tabpanel' aria-labelledby='pills-home-tab')
+    //-     hr
+    //-     .w3-panel
+    //-       // table data
+    //-       center
+    //-         h2 Report Account & Category
+    //-       br
+    //-       form(action='/reportfilter1' method='post')
+    //-         .row
+    //-           .col-md-7
+    //-           .col-md-2
+                
+    //-             | Account Name
+    //-             select.form-control(name='name')
+    //-                 option(value='All') Select All Account
+    //-                 each x in listofaccount
+    //-                   option(value=''+[x.account_name]) #{x.account_name}
+    //-                 //option(value='All') All
+    //-           .col-md-2 
+    //-             | Account Category
+    //-             select.form-control(name='category' required)
+    //-                 option(value='All') Select All Category
+    //-                 each x in listcategory
+    //-                   option(value=''+[x.category_name]) #{x.category_name}
+    //-                 //option(value='All') All
+                  
+    //-           .col-md-1
+    //-             button.btn.btn-outline-primary.form-control(style='margin-top:20px' type='submit') Filter
+    //-       hr
+    //-       -function prettyDate(dateString){
+    //-           //if it's already a date object and not a string you don't need this line:
+    //-           -var date = new Date(dateString);
+    //-           -var d = date.getDate();
+    //-           -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    //-           -var m = monthNames[date.getMonth()];
+    //-           -var y = date.getFullYear();
+    //-           -return d+' '+m+' '+y;}
+    //-       .row
+    //-         .table-responsive-md.col-md-10
+    //-           table.table.table-hover.table-bordered
+    //-             thead
+    //-               tr
+    //-                 td Account Last Used
+    //-                 td Account Name
+    //-                 td Account Currency
+    //-                 td Account Category
+    //-                 td Account Balance
+    //-             tbody
+    //-             each a in listaccount
+    //-               tr
+    //-                 td #{a.account_lastused}
+    //-                 td #{a.account_name}
+    //-                 td #{a.account_currency}
+    //-                 td #{a.account_category}
+    //-                 td #{symbol} #{a.account_balance}
+    //-             tfooter
+    //-               tr
+    //-                 td(colspan='4' style='text-align:right;') Total
+    //-                 td #{symbol} #{totalAccount}   
+    //-     hr
+
+    //- if(id==2)
+    //-   #pills-profile.tab-pane.fade(class='show active' role='tabpanel' aria-labelledby='pills-profile-tab')
+    //-     hr
+    //-     .w3-panel
+    //-       // table data
+    //-       center
+    //-         h2 Report Cash Flows
+    //-       br
+    //-       form(action='/reportfilter2' method='post')
+    //-         .row
+            
+    //-           .col-md-5
+    //-           .col-md-2
+                
+    //-             | Account Name
+    //-             select.form-control(name='name')
+    //-               if(selectacc!='All')
+    //-                 option(value=''+selectacc) #{selectacc}
+    //-                 //option(value='0') Select Account Name
+    //-                 each x in listofaccount
+    //-                   if(selectacc!=[x.account_name])
+    //-                     option(value=''+[x.account_name]) #{x.account_name}
+    //-                 option(value='All') Select All Account
+    //-               else
+    //-                 option(value='All') Select All Account
+    //-                 //option(value='0') Select Account Name
+    //-                 each x in listofaccount
+    //-                   if(selectacc!=[x.account_name])
+    //-                     option(value=''+[x.account_name]) #{x.account_name}
+    //-           .col-md-2
+                
+    //-             | Type Cash Flows
+    //-             select.form-control(name='type')
+    //-               option(value=''+selecttype) #{selecttype}
+    //-                 //option(value='0') Select Type Cash Flows
+    //-               if(selecttype!='Income')
+    //-                 option(value='Income') Income
+    //-               if(selecttype!='Expense')
+    //-                 option(value='Expense') Expense
+    //-               if(selecttype!='Income-Expense')
+    //-                 option(value='Income-Expense') Income-Expense
+    //-               if(selecttype!='Transfer')
+    //-                 option(value='Transfer') Transfer
+    //-               if(selecttype!='All')
+    //-                 option(value='All') Select All Type
+                  
+    //-           .col-md-2
+    //-             | Range Date
+    //-             input#datepicker.form-control(type='text' name='date' value=''+rangedate)
+    //-           .col-md-1
+    //-             button.btn.btn-outline-primary.form-control(style='margin-top:20px' type='submit') Filter
+    //-       hr
+    //-       -function prettyDate(dateString){
+    //-           //if it's already a date object and not a string you don't need this line:
+    //-           -var date = new Date(dateString);
+    //-           -var d = date.getDate();
+    //-           -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    //-           -var m = monthNames[date.getMonth()];
+    //-           -var y = date.getFullYear();
+    //-           -return d+' '+m+' '+y;}
+    //-       if(totalIncome!=0 && totalExpense!=0)
+    //-         .row
+    //-           .table-responsive-md.col-md-6
+    //-             table.table.table-hover.table-bordered
+                   
+    //-               thead Income
+    //-                 tr
+    //-                   td Income Date
+    //-                   td Income Category
+    //-                   td Income Account
+    //-                   td Income Note
+    //-                   td Income Amount
+    //-               tbody
+    //-               each a in listincome
+    //-                 tr
+    //-                   td #{a.income_date}
+    //-                   td #{a.income_category}
+    //-                   td #{a.income_account}
+    //-                   td #{a.income_notes}
+    //-                   td #{symbol} #{a.income_amount}
+    //-               tfooter
+    //-                 tr
+    //-                   td(colspan='4' style='text-align:right;') Total
+    //-                   td #{symbol} #{totalIncome}
+    //-           // expense
+    //-           .table-responsive-md.col-md-6
+    //-             table.table.table-hover.table-bordered
+                   
+    //-               thead Expense
+    //-                 tr
+    //-                   td Expense Date
+    //-                   td Expense Category
+    //-                   td Expense Account
+    //-                   td Expense Note
+    //-                   td Expense Amount
+    //-               tbody
+    //-               each b in listexpense
+    //-                 tr
+    //-                   td #{b.expense_date}
+    //-                   td #{b.expense_category}
+    //-                   td #{b.expense_account}
+    //-                   td #{b.expense_notes}
+    //-                   td #{symbol} #{b.expense_amount}
+    //-               tfooter
+    //-                   tr
+    //-                     td(colspan='4' style='text-align:right;') Total
+    //-                     td #{symbol} #{totalExpense}
+    //-       else if(totalIncome!=0)
+    //-         .row
+    //-           .table-responsive-md.col-md-12
+    //-             table.table.table-hover.table-bordered
+                  
+    //-               thead Income
+    //-                 tr
+    //-                   td Income Date
+    //-                   td Income Category
+    //-                   td Income Account
+    //-                   td Income Note
+    //-                   td Income Amount
+    //-               tbody
+    //-               each a in listincome
+    //-                 tr
+    //-                   td #{a.income_date}
+    //-                   td #{a.income_category}
+    //-                   td #{a.income_account}
+    //-                   td #{a.income_notes}
+    //-                   td #{symbol} #{a.income_amount}
+    //-               tfooter
+    //-                 tr
+    //-                   td(colspan='4' style='text-align:right;') Total
+    //-                   td #{symbol} #{totalIncome}
+    //-       else if(totalExpense!=0)
+    //-         .row
+    //-           .table-responsive-md.col-md-12
+    //-             table.table.table-hover.table-bordered
+                   
+    //-               thead Expense
+    //-                 tr
+    //-                   td Expense Date
+    //-                   td Expense Category
+    //-                   td Expense Account
+    //-                   td Expense Note
+    //-                   td Expense Amount
+    //-               tbody
+    //-               each b in listexpense
+    //-                 tr
+    //-                   td #{b.expense_date}
+    //-                   td #{b.expense_category}
+    //-                   td #{b.expense_notes}
+    //-                   td #{b.expense_account}
+    //-                   td #{symbol} #{b.expense_amount}
+    //-               tfooter
+    //-                   tr
+    //-                     td(colspan='4' style='text-align:right;') Total
+    //-                     td #{symbol} #{totalExpense}
+    //-       if(totalTransfer!=0)
+    //-         .row
+    //-           .table-responsive-md.col-md-12
+    //-             table.table.table-hover.table-bordered
+                   
+    //-               thead Transfer
+    //-                 tr
+    //-                   td Transfer Date
+    //-                   td Transfer From
+    //-                   td Transfer To
+    //-                   td Transfer Category
+    //-                   td Transfer Notes
+    //-                   td Transfer Amount
+    //-               tbody
+    //-               each a in listtransfer
+    //-                 tr
+    //-                   td #{a.transfer_date}
+    //-                   td #{a.transfer_src}
+    //-                   td #{a.transfer_dest}
+    //-                   td #{a.transfer_category}
+    //-                   td #{a.transfer_notes}
+    //-                   td #{symbol} #{a.transfer_amount}
+    //-               tfooter
+    //-                 tr
+    //-                   td(colspan='5' style='text-align:right;') Total
+    //-                   td #{symbol} #{totalTransfer} 
+    //-     hr
+
+    //- else if(id!=2)
+    #pills-profile.tab-pane.fade(role='tabpanel' aria-labelledby='pills-profile-tab')
+
+      hr
+      .w3-panel
+        // table data
+        center
+          h2 Report Cash Flows
+        br
+        //- form(action='/reportfilter2' method='post')
+        form
+          .row
+          
+            .col-md-6
+            .col-md-2
+              
+              | Account Name
+              select#nameacc.form-control(name="name" onchange="filter()")
+                  option(value='All' selected) Select All Account
+                  //- each x in listaccount
+                  //-   option(value=''+[x.account_name]) #{x.account_name}
+                  //option(value='All') All
+            .col-md-2
+              
+              | Type Cash Flows
+              select#typecash.form-control(name="type" onchange="filter()")
+                  option(value='All' selected) Select All Type
+                  option(value='Income') Income
+                  option(value='Expense') Expense
+                  option(value='Income-Expense') Income-Expense
+                  option(value='Transfer') Transfer
+                  //option(value='All') All
+                
+            .col-md-2
+              | Range Date
+              input#datepicker.form-control(type='text' name='date' onchange='filter()' disabled)
+              input#selectalldate(type="checkbox" checked onchange="filter()")
+              label(for="selectalldate") Select All Date
+            //- .col-md-1
+            //-   button.btn.btn-outline-primary.form-control(style='margin-top:20px' type='submit') Filter
+        hr
+        -function prettyDate(dateString){
+            //if it's already a date object and not a string you don't need this line:
+            -var date = new Date(dateString);
+            -var d = date.getDate();
+            -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+            -var m = monthNames[date.getMonth()];
+            -var y = date.getFullYear();
+            -return d+' '+m+' '+y;}
+        .row
+          #allIncome.table-responsive-md.col-md-6
+            table#tableIncome.table.table-hover.table-bordered
+              caption income
+              thead
+                tr
+                  td Income Date
+                  td Income Category
+                  td Income Account
+                  td Income Note
+                  td Income Amount
+              //- tbody
+              //- each a in listincome
+              //-   tr
+              //-     td #{a.income_date}
+              //-     td #{a.income_category}
+              //-     td #{a.income_account}
+              //-     td #{a.income_notes}
+              //-     td #{symbol} #{a.income_amount}
+              //- tfooter
+              //-   tr
+              //-     td(colspan='4' style='text-align:right;') Total
+              //-     td #{symbol} #{totalIncome}
+          // expense
+          #allExpense.table-responsive-md.col-md-6
+            table#tableExpense.table.table-hover.table-bordered
+              caption Expense
+              thead
+                tr
+                  td Expense Date
+                  td Expense Category
+                  td Expense Account
+                  td Expense Note
+                  td Expense Amount
+              //- tbody
+              //- each b in listexpense
+              //-   tr
+              //-     td #{b.expense_date}
+              //-     td #{b.expense_category}
+              //-     td #{b.expense_notes}
+              //-     td #{b.expense_account}
+              //-     td #{symbol} #{b.expense_amount}
+              //- tfooter
+              //-     tr
+              //-       td(colspan='4' style='text-align:right;') Total
+              //-       td #{symbol} #{totalExpense}
+        //- if(totalTransfer!=0)
+        hr
+        .row
+        
+          #allTransfer.table-responsive-md.col-md-12
+          
+            table#tableTransfer.table.table-hover.table-bordered
+              caption Transfer
+              thead
+                tr
+                  td Transfer Date
+                  td Transfer From
+                  td Transfer To
+                  td Transfer Category
+                  td Transfer Notes
+                  td Transfer Amount
+                //- tbody
+                //- each a in listtransfer
+                //-   tr
+                //-     td #{a.transfer_date}
+                //-     td #{a.transfer_src}
+                //-     td #{a.transfer_dest}
+                //-     td #{a.transfer_category}
+                //-     td #{a.transfer_notes}
+                //-     td #{symbol} #{a.transfer_amount}
+                //- tfooter
+                //-   tr
+                //-     td(colspan='5' style='text-align:right;') Total
+                //-     td #{symbol} #{totalTransfer} 
+      hr
+    #pills-contact.tab-pane.fade(role='tabpanel' aria-labelledby='pills-contact-tab')
+      hr
+      .w3-panel
+        // table data
+        center
+          h2 Report Chart of Balance
+          
+            
+        br
+        form
+          .row.w3-margin-bottom
+            .col-md-8
+            .col-md-2
+              | Select Account Name
+              select#accname.form-control(onchange="filterchart()")
+                option(value="All") Select All
+                each x in listacc
+                  option(value=""+[x.account_name]) #{x.account_name}
+            .col-md-2
+              | Range Date
+              input#datepickerchart.form-control(type='text' name='date' disabled onchange="filterchart()")
+              input#selectalldatechart(type="checkbox" checked onchange="filterchart()")
+              label(for="selectalldatechart") Select All Date
+        each p in listacc
+          
+          .row.w3-margin-bottom(id="row"+[p.account_name])
+            h3 Account Name : #{p.account_name}
+            .table-responsive-md.col-md-12
+              table.table.table-hover.table-striped.table-bordered(id="tableChart"+[p.account_name] cellpadding="1" cellspacing="1")
+                thead
+                  tr
+                    td Account Name
+                    td Account Currency
+                    td Account Category
+                    td Account Balance
+                    td Not Included
+                    td Type Transaction
+                    td Transaction Date
+                    td Debit Balance
+                    td Credit Balance
+                    td Account Balance Current
+          
+
+
+  
   // Footer
   //
     <footer class="w3-container w3-padding-16 w3-light-grey">
     <h4>FOOTER</h4>
     </footer>
   // End page content
+script(type='text/javascript' src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js')
+script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js")
+script(src="./js/axios.min.js")
+script(src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/money.js/0.2.0/money.min.js")
 script.
   // Get the Sidebar
   var mySidebar = document.getElementById("mySidebar");
   // Get the DIV with overlay effect
   var overlayBg = document.getElementById("myOverlay");
+
   // Toggle between showing and hiding the sidebar, and add overlay effect
   function w3_open() {
   if (mySidebar.style.display === 'block') {
@@ -170,3 +755,463 @@ script.
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
   }
+  
+
+  function w3_logout(){
+  window.location.replace('/');
+  }
+  var dataaccount=[], dataincome=[], dataexpense=[], datatransfer=[], datachart=[], datacategory=[];
+  var tableincome=document.getElementById("allIncome");
+  var tableexpense=document.getElementById("allExpense");
+  var tabletransfer=document.getElementById("allTransfer");
+
+  var accname;
+  var notincluded=0;
+  var first=true, firstchart=true;
+  var nameacc;
+  var typecash;
+  var datepicker,datepickerchart;
+  var datepicked=false;
+  var selectalldate, selectalldatechart;
+  var dataaccountfilter=[], dataincomefilter=[], dataexpensefilter=[], datatransferfilter=[], datachartfilter=[];
+  
+  $(function() {
+    $('#datepicker').daterangepicker({
+      showDropdowns: true,
+      opens: 'left'
+    }, function(start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      datepicker=start.format('YYYY-MM-DD')+" - "+end.format('YYYY-MM-DD')
+      datepicked=true;
+      filter();
+    });
+
+    $('#datepickerchart').daterangepicker({
+      showDropdowns: true,
+      opens: 'left'
+    }, function(start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      
+    });
+  });
+   
+  function loading(){
+    datepicker=document.getElementById("datepicker");
+    nameacc=document.getElementById("nameacc");
+    axios.get('/report/cob')
+    .then(response =>{
+      datacategory=response.data.datacategory;
+      dataaccount=response.data.dataaccount;
+      dataincome=response.data.dataincome;
+      dataexpense=response.data.dataexpense;
+      datatransfer=response.data.datatransfer;
+      datachart=response.data.datachart;
+      console.log(dataaccount);
+      
+      for(var i=0;i<dataaccount.length;i++){
+        var option = document.createElement("option");
+        option.text=dataaccount[i]["account_name"];
+        option.value=dataaccount[i]["account_name"];
+        nameacc.add(option,null);
+      }
+      show();
+      //- var before=moment().subtract(7, 'days').format('L');
+      //- datepicker.value=before+" - "+moment().format('MM/DD/YYYY');
+      //- datepicker.onchange="filter()";
+      $(document).ready(function() {
+      var tempacc=[]
+      for(var i=0;i<datacategory.length;i++){
+        tempacc=[]
+        for(var j=0;j<dataaccount.length;j++){
+          if(datacategory[i]["category_name"]==dataaccount[j]["account_category"]){
+            tempacc.push(dataaccount[j])
+          }
+        }
+        
+        $('#tableAcc'+datacategory[i]["category_name"]).DataTable({
+          keys: true,
+          fixedHeader: true,
+          data:tempacc,
+          "order": [[ 0, "desc" ]],
+          columns: [
+              { data: 'account_lastused' },
+              { data: 'account_name' },
+              { data: 'account_currency' },
+              { data: 'account_category' },
+              { data: 'account_balance_current' }
+          ]
+        });
+      }
+        
+        
+        $('#tableIncome').DataTable({
+          keys: true,
+          data:dataincome,
+          "order": [[ 0, "desc" ]],
+          columns: [
+              { data: 'income_date' },
+              { data: 'income_category' },
+              { data: 'income_account' },
+              { data: 'income_notes' },
+              { data: 'income_amount' }
+          ]
+        });
+        $('#tableExpense').DataTable({
+          keys: true,
+          data:dataexpense,
+          "order": [[ 0, "desc" ]],
+          columns: [
+              { data: 'expense_date' },
+              { data: 'expense_category' },
+              { data: 'expense_account' },
+              { data: 'expense_notes' },
+              { data: 'expense_amount' }
+          ]
+        });
+        $('#tableTransfer').DataTable({
+          keys: true,
+          data:datatransfer,
+          "order": [[ 0, "desc" ]],
+          columns: [
+              { data: 'transfer_date' },
+              { data: 'transfer_src' },
+              { data: 'transfer_dest' },
+              { data: 'transfer_category' },
+              { data: 'transfer_notes' },
+              { data: 'transfer_amount' }
+          ]
+        });
+        var temp=[];
+        for(var i=0;i<dataaccount.length;i++){
+          temp=[];
+          for(var j=0;j<datachart.length;j++){
+            if(dataaccount[i]["account_name"]==datachart[j]["account_name"]){
+              temp.push(datachart[j]);
+            }
+          }
+          $('#tableChart'+dataaccount[i]["account_name"]).DataTable({
+              keys: true,
+
+              data:temp,
+            
+              "order": [[ 0, "asc" ],[6,"asc"]],
+              columns: [
+                  { data: 'account_name' },
+                  { data: 'account_currency' },
+                  { data: 'account_category' },
+                  { data: 'account_balance' },
+                  { data: 'not_included' },
+                  { data: 'type_transaction' },
+                  { data: 'transaction_date' },
+                  { data: 'debit_balance' },
+                  { data: 'credit_balance' },
+                  { data: 'account_balance_current' }
+              ]
+            });
+        }
+        
+        
+      });
+      first=false;
+      firstchart=false;
+  })
+  .catch(error =>{
+    console.log(error);
+  })
+    
+  }
+  function show(){
+    document.getElementById("loader").style.display = "none";
+    $('#pills-tab').show();
+    $('#pills-home').addClass("show");
+  }
+
+  function filter(){
+    if(!first){
+    dataincomefilter=[];
+    dataexpensefilter=[];
+    datatransferfilter=[];
+    nameacc=document.getElementById("nameacc").value;
+    typecash=document.getElementById("typecash").value;
+    selectalldate=document.getElementById("selectalldate");
+    if(!datepicked){
+      datepicker=document.getElementById("datepicker").value;
+    }
+    datepicked=false;
+    if(selectalldate.checked){
+      document.getElementById("datepicker").disabled=true;
+    }
+    else{
+      document.getElementById("datepicker").disabled=false;
+    }
+    if(typecash=="All"){ 
+      tableincome.style.display="inline";
+      tableexpense.style.display="inline";
+      tabletransfer.style.display="inline";
+    }
+    else if(typecash=="Income"){
+      tableincome.style.display="inline";
+      tableexpense.style.display="none";
+      tabletransfer.style.display="none";
+    }
+    else if(typecash=="Income-Expense"){
+      tableincome.style.display="inline";
+      tableexpense.style.display="inline";
+      tabletransfer.style.display="none";
+    }
+    else if(typecash=="Expense"){
+      tableincome.style.display="none";
+      tableexpense.style.display="inline";
+      tabletransfer.style.display="none";
+    }
+    else if(typecash=="Transfer"){
+      tableincome.style.display="none";
+      tableexpense.style.display="none";
+      tabletransfer.style.display="inline";
+    }
+    console.log(typecash);
+    console.log(nameacc);
+    if(selectalldate.checked){
+      for(var i=0;i<dataincome.length;i++){ 
+        if(nameacc=="All"){
+          dataincomefilter.push(dataincome[i]);
+        }
+        else if(nameacc==dataincome[i]["income_account"]){
+          dataincomefilter.push(dataincome[i]);
+        }
+      }
+      for(var i=0;i<dataexpense.length;i++){
+        if(nameacc=="All"){
+          dataexpensefilter.push(dataexpense[i]);
+        }
+        else if(nameacc==dataexpense[i]["expense_account"]){
+          dataexpensefilter.push(dataexpense[i]);
+        }
+      }
+      for(var i=0;i<datatransfer.length;i++){
+        if(nameacc=="All"){
+          datatransferfilter.push(datatransfer[i]);
+        }
+        else if(nameacc==datatransfer[i]["transfer_src"] || nameacc==datatransfer[i]["transfer_dest"]){
+          datatransferfilter.push(datatransfer[i]);
+        }
+      }
+    }
+    else{
+      var fromdate=moment(datepicker.substring(0,10)).format("YYYY-MM-DD");
+      var todate=moment(datepicker.substring(13,23)).format("YYYY-MM-DD");
+      console.log(fromdate+"\n"+todate);
+
+      for(var i=0;i<dataincome.length;i++){ 
+        var indate=moment(dataincome[i]["income_date"],"DD/MM/YYYY").format("YYYY-MM-DD");
+        console.log(indate);
+        if(nameacc=="All"){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              dataincomefilter.push(dataincome[i]);
+            }
+          }
+        }
+        else if(nameacc==dataincome[i]["income_account"]){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              dataincomefilter.push(dataincome[i]);
+            }
+          }
+        }
+      }
+      for(var i=0;i<dataexpense.length;i++){
+        var indate=moment(dataexpense[i]["expense_date"],"DD/MM/YYYY").format("YYYY-MM-DD");
+        if(nameacc=="All"){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              dataexpensefilter.push(dataexpense[i]);
+            }
+          }
+        }
+        else if(nameacc==dataexpense[i]["expense_account"]){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              dataexpensefilter.push(dataexpense[i]);
+            }
+          }
+        }
+      }
+      for(var i=0;i<datatransfer.length;i++){
+        var indate=moment(datatransfer[i]["transfer_date"],"DD/MM/YYYY").format("YYYY-MM-DD");
+        if(nameacc=="All"){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              datatransferfilter.push(datatransfer[i]);
+            }
+          }
+        }
+        else if(nameacc==datatransfer[i]["transfer_src"] || nameacc==datatransfer[i]["transfer_dest"]){
+          if(moment(fromdate).isSameOrBefore(indate, 'day')){
+            if(moment(todate).isSameOrAfter(indate, 'day')){
+              datatransferfilter.push(datatransfer[i]);
+            }
+          }
+        }
+      }
+    }
+    var datatableIncome = $('#tableIncome').DataTable();
+    datatableIncome.clear();
+    datatableIncome.rows.add(dataincomefilter);
+    datatableIncome.draw();
+    var datatableExpense = $('#tableExpense').DataTable();
+    datatableExpense.clear();
+    datatableExpense.rows.add(dataexpensefilter);
+    datatableExpense.draw();
+    var datatableTransfer = $('#tableTransfer').DataTable();
+    datatableTransfer.clear();
+    datatableTransfer.rows.add(datatransferfilter);
+    datatableTransfer.draw();
+    console.log(dataincomefilter);
+    console.log(dataexpensefilter);
+    console.log(datatransferfilter);
+    }
+  }
+  
+  function filterchart(){
+    if(!firstchart){
+    datachartfilter=[];
+    selectalldatechart=document.getElementById("selectalldatechart");
+    datepickerchart=document.getElementById("datepickerchart").value;
+    accname=document.getElementById("accname").value;
+    if(accname=="All"){
+      var datatableChart;
+      for(var i=0;i<dataaccount.length;i++){
+        datatableChart = document.getElementById('row'+dataaccount[i]["account_name"]).style.display="inline";
+      }
+    }
+    else{
+      var datatableChart;
+      for(var i=0;i<dataaccount.length;i++){
+        if(accname==dataaccount[i]["account_name"]){
+          datatableChart = document.getElementById('row'+dataaccount[i]["account_name"]).style.display="inline";
+        }
+        else{
+          datatableChart = document.getElementById('row'+dataaccount[i]["account_name"]).style.display="none";
+        }
+      }
+    }
+    if(selectalldatechart.checked){
+      document.getElementById("datepickerchart").disabled=true;
+        for(var i=0;i<dataaccount.length;i++){
+          temp=[];
+          for(var j=0;j<datachart.length;j++){
+            if(dataaccount[i]["account_name"]==datachart[j]["account_name"]){
+              temp.push(datachart[j]);
+            }
+            
+          }
+          var datatableChart = $('#tableChart'+dataaccount[i]["account_name"]).DataTable();
+          datatableChart.clear();
+          datatableChart.rows.add(temp);
+          datatableChart.draw();
+          
+        }
+      
+      
+    }
+    else{
+      document.getElementById("datepickerchart").disabled=false;
+
+      var fromdate=moment(datepickerchart.substring(0,10)).format("YYYY-MM-DD");
+      var todate=moment(datepickerchart.substring(13,23)).format("YYYY-MM-DD");
+      for(var j=0;j<dataaccount.length;j++){
+        
+        var BC=dataaccount[j]["account_balance_current"]
+        var arrtemp=[];
+        arrtemp=BC.split(" ")
+        if(arrtemp[0]=="RP"){
+          fx.base = "IDR";
+          fx.rates = {
+            "USD" : 0.000071, // eg. 1 USD === 0.745101 EUR
+            "SGD" : 0.000096, // etc...
+            "MYR" : 0.000291,
+            "IDR" : 1,        // always include the base rate (1:1)
+            /* etc */
+          }
+        }
+        console.log(dataaccount[j]["account_name"]+arrtemp[1])
+        //- var symbol=BC.substring(0,2);
+        notincluded=parseInt(numeral(arrtemp[1]).format('0'));
+        console.log("Not Included"+notincluded);
+        for(var i=0;i<datachart.length;i++){ 
+          
+          var indate=moment(datachart[i]["transaction_date"],"DD/MM/YYYY").format("YYYY-MM-DD");
+          if(dataaccount[j]["account_name"]==datachart[i]["account_name"]){
+            if(moment(fromdate).isSameOrBefore(indate, 'day')){
+              if(moment(todate).isSameOrAfter(indate, 'day')){
+                var temp, arrtemps=[],temps;
+                if(datachart[i]["debit_balance"]==0){
+                  temp=datachart[i]["credit_balance"];
+                  arrtemps=temp.split(" ")
+                  if(arrtemps[0]=="RP"){
+                    notincluded-=parseInt(arrtemps[1]);
+                    console.log("A"+notincluded);
+                  }
+                  else{
+                    temps=parseFloat(fx(parseInt(arrtemps[1])).convert({ from:dataaccount[j]["account_currency"], to:"IDR" })).toFixed(2);
+                    notincluded-=parseInt(temps);
+                    console.log("Convert"+temps)
+                  }
+                }
+                else{
+                  temp=datachart[i]["debit_balance"];
+                  arrtemps=temp.split(" ")
+                  if(arrtemps[0]=="RP"){
+                    notincluded+=parseInt(arrtemps[1]);
+                    console.log("B"+notincluded);
+                  }
+                }
+                
+              }
+            }
+          }
+        }
+        console.log(notincluded);
+        var update;
+        for(var i=0;i<datachart.length;i++){ 
+          
+          var indate=moment(datachart[i]["transaction_date"],"DD/MM/YYYY").format("YYYY-MM-DD");
+          console.log(indate);
+          if(dataaccount[j]["account_name"]==datachart[i]["account_name"]){
+            if(moment(fromdate).isSameOrBefore(indate, 'day')){
+              if(moment(todate).isSameOrAfter(indate, 'day')){
+                update={
+                  account_name:dataaccount[j]["account_name"],
+                  account_currency:dataaccount[j]["account_currency"],
+                  account_category:dataaccount[j]["account_category"],
+                  account_balance:datachart[i]["account_balance"],
+                  not_included:arrtemp[0]+" "+notincluded,
+                  type_transaction:datachart[i]["type_transaction"],
+                  transaction_date:datachart[i]["transaction_date"],
+                  debit_balance:datachart[i]["debit_balance"],
+                  credit_balance:datachart[i]["credit_balance"],
+                  account_balance_current:datachart[i]["account_balance_current"],
+                }
+                datachartfilter.push(update);
+              }
+            }
+          }
+        }
+        var datatableChart = $('#tableChart'+dataaccount[j]["account_name"]).DataTable();
+        datatableChart.clear();
+        datatableChart.rows.add(datachartfilter);
+        datatableChart.draw();
+      }
+      
+    }
+    //- for(var i=0;i<dataaccount.length;i++){
+    //-   var datatableChart = $('#tableChart'+dataaccount[i]["account_name"]).DataTable();
+    //-   datatableChart.clear();
+    //-   datatableChart.rows.add(datachartfilter);
+    //-   datatableChart.draw();
+    //- }
+    }
+  }
+  
+
